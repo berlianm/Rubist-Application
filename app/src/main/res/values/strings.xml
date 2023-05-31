@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Rubist</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="register_succes_msg">Akun anda berhasil dibuat!\n</string>
+    <string name="register_error_msg">Mohon maaf,\nAkun anda gagal dibuat!\n</string>
+    <string name="logout_msg">Are you sure you want to log out?</string>
+    <string name="logout">Logout</string>
+    <string name="yes">Yes</string>
+    <string name="No">No</string>
+</resources>
