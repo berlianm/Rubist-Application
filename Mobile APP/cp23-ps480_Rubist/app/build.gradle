@@ -10,11 +10,11 @@ android {
         viewBinding true
     }
 
-    namespace 'com.cp23ps480.rubist'
+    namespace 'com.C23PS480.Rubist'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.cp23ps480.rubist"
+        applicationId "com.C23PS480.Rubist"
         minSdk 24
         targetSdk 33
         versionCode 1
