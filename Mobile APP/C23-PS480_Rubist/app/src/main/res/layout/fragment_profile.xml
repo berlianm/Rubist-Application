@@ -181,7 +181,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_logout"
+        android:id="@+id/btn_EditProfile"
         android:layout_width="335dp"
         android:layout_height="55dp"
         android:layout_gravity="center"

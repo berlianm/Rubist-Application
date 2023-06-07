@@ -15,15 +15,17 @@ import androidx.datastore.dataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
+import com.C23PS480.Rubist.EditProfile.EditProfileActivity
 import com.C23PS480.Rubist.Login.LoginActivity
 import com.C23PS480.Rubist.MainViewModel
 import com.C23PS480.Rubist.Model.UserPreference
 import com.C23PS480.Rubist.R
 import com.C23PS480.Rubist.ViewModelFactory
 import com.C23PS480.Rubist.databinding.FragmentProfileBinding
+import com.bumptech.glide.Glide
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "Setting")
-class Profile : Fragment()  {
+class Profile : Fragment(), View.OnClickListener {
 
     private lateinit var mainViewModel : MainViewModel
     private var _binding:FragmentProfileBinding? = null;
@@ -37,8 +39,8 @@ class Profile : Fragment()  {
         )[MainViewModel::class.java]
 
         setupViewModel()
-//        val btnLogout : Button = view.findViewById(R.id.btn_logout)
-//        btnLogout.setOnClickListener(this)
+        val btnEdit : Button = view.findViewById(R.id.btn_EditProfile)
+        btnEdit.setOnClickListener(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -52,6 +54,9 @@ class Profile : Fragment()  {
         mainViewModel.getUser().observe(requireActivity()) { user ->
            binding.tvProfileName.text = user.name
            binding.tvProfileEmail.text = user.email
+            Glide.with(binding.userAvatar)
+                .load(user.photoUrl)
+                .centerCrop()
         }
     }
 
@@ -75,9 +80,9 @@ class Profile : Fragment()  {
 //        alertDialog.show()
 //    }
 //
-//    override fun onClick(v: View?) {
-//        logoutDialog()
-//    }
+    override fun onClick(v: View?) {
+        startActivity(Intent(requireActivity(), EditProfileActivity::class.java))
+    }
 
 
 }

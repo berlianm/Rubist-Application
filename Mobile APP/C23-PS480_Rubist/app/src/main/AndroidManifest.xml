@@ -26,7 +26,7 @@
             android:name=".AfterScan.AfterScanActivity"
             android:exported="false" />
         <activity
-            android:name=".Profile.ProfileActivity"
+            android:name=".EditProfile.EditProfileActivity"
             android:exported="false" />
         <activity
             android:name=".NavBar.NavBarActivity"

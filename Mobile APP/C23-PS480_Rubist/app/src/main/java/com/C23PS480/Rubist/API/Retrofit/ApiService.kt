@@ -5,6 +5,7 @@ import com.C23PS480.Rubist.API.Response.ChangePassResponse
 import com.C23PS480.Rubist.API.Response.FileUploadResponse
 import com.C23PS480.Rubist.API.Response.LoginResponse
 import com.C23PS480.Rubist.API.Response.RegisterResponse
+import com.C23PS480.Rubist.API.Response.UpdateProfileResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -35,11 +36,21 @@ interface ApiService {
     ): Call<ChangePassResponse>
 
     @Multipart
+    @POST("/api/updateProfile")
+    fun UpdateProfile(
+        @Part file: MultipartBody.Part,
+        @Part("location") location: RequestBody,
+        @Part("mobilePhone") mobiilePhone: RequestBody,
+    ): Call<UpdateProfileResponse>
+
+    @Multipart
     @POST("stories/guest")
     fun uploadImage(
 //        @Header("Authorization") authorization: String,
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody,
     ): Call<FileUploadResponse>
+
+
 
 }
