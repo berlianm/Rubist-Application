@@ -143,7 +143,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="@string/indonesia"
+                    android:text="---"
                     android:textColor="#2B2B2B"
                     android:textSize="14sp" />
             </RelativeLayout>
@@ -173,7 +173,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="@string/phone_number"
+                    android:text="---"
                     android:textColor="#2B2B2B"
                     android:textSize="14sp" />
             </RelativeLayout>

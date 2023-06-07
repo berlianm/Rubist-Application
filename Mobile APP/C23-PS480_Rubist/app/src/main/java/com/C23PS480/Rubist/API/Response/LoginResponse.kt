@@ -7,6 +7,12 @@ data class LoginResponse(
     @field:SerializedName("uid")
     val uid: String,
 
+    @field:SerializedName("displayName")
+    val name: String,
+
+    @field:SerializedName("email")
+    val email: String,
+
     @field:SerializedName("error")
     val error: String,
 
