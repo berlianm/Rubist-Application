@@ -4,6 +4,7 @@ import com.C23PS480.Rubist.API.Request.UserRequest
 import com.C23PS480.Rubist.API.Response.AddPostResponse
 import com.C23PS480.Rubist.API.Response.ChangePassResponse
 import com.C23PS480.Rubist.API.Response.FileUploadResponse
+import com.C23PS480.Rubist.API.Response.GetPostResponse
 import com.C23PS480.Rubist.API.Response.LoginResponse
 import com.C23PS480.Rubist.API.Response.RegisterResponse
 import com.C23PS480.Rubist.API.Response.UpdateProfileResponse
@@ -11,6 +12,8 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.POST
@@ -62,6 +65,8 @@ interface ApiService {
         @Part file: MultipartBody.Part,
     ): Call<AddPostResponse>
 
-
+    @GET("/api/community/posts")
+    fun getPost(
+    ): Call<GetPostResponse>
 
 }
