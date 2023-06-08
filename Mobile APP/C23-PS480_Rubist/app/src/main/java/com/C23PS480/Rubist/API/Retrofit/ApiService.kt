@@ -3,6 +3,7 @@ package com.C23PS480.Rubist.API.Retrofit
 import com.C23PS480.Rubist.API.Request.UserRequest
 import com.C23PS480.Rubist.API.Response.AddPostResponse
 import com.C23PS480.Rubist.API.Response.ChangePassResponse
+import com.C23PS480.Rubist.API.Response.DetailPostResponse
 import com.C23PS480.Rubist.API.Response.FileUploadResponse
 import com.C23PS480.Rubist.API.Response.GetPostResponse
 import com.C23PS480.Rubist.API.Response.LoginResponse
@@ -18,6 +19,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Path
 
 interface ApiService {
     @Headers("content-type: application/json")
@@ -68,5 +70,10 @@ interface ApiService {
     @GET("/api/community/posts")
     fun getPost(
     ): Call<GetPostResponse>
+
+    @GET("/api/community/posts/{postId}")
+    fun getPostbyID(
+        @Path("postId") postId: String
+    ): Call<DetailPostResponse>
 
 }
