@@ -78,9 +78,12 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_desc"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="text"
-            android:textSize="18dp" />
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:maxLines="10"
+            android:minLines="6"
+            android:scrollbars="vertical" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

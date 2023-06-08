@@ -1,6 +1,7 @@
 package com.C23PS480.Rubist.API.Retrofit
 
 import com.C23PS480.Rubist.API.Request.UserRequest
+import com.C23PS480.Rubist.API.Response.AddPostResponse
 import com.C23PS480.Rubist.API.Response.ChangePassResponse
 import com.C23PS480.Rubist.API.Response.FileUploadResponse
 import com.C23PS480.Rubist.API.Response.LoginResponse
@@ -50,6 +51,16 @@ interface ApiService {
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody,
     ): Call<FileUploadResponse>
+
+
+    @Multipart
+    @POST("/api/community/posts")
+    fun addPost(
+//        @Header("Authorization") authorization: String,
+        @Part("title") title: RequestBody,
+        @Part("content") content: RequestBody,
+        @Part file: MultipartBody.Part,
+    ): Call<AddPostResponse>
 
 
 
