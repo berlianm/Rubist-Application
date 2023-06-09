@@ -16,6 +16,9 @@ data class LoginResponse(
     @field:SerializedName("photoURL")
     val photoURL: String,
 
+    @field:SerializedName("phoneNumber")
+    val phoneNumber: String,
+
     @field:SerializedName("error")
     val error: String,
 

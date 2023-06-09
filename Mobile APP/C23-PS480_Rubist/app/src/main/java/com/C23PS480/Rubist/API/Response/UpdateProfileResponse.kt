@@ -8,5 +8,4 @@ data class UpdateProfileResponse(
 
     @field:SerializedName("image")
     val image: String? = null,
-
-    )
+)

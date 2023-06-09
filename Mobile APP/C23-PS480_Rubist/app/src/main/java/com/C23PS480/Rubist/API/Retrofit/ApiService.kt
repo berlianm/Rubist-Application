@@ -41,13 +41,15 @@ interface ApiService {
         @Body userRequest: UserRequest
     ): Call<ChangePassResponse>
 
+    @Headers("content-type: application/json")
     @Multipart
     @POST("/api/updateProfile")
-    fun UpdateProfile(
-        @Part file: MultipartBody.Part,
-        @Part("location") location: RequestBody,
-        @Part("mobilePhone") mobiilePhone: RequestBody,
+    fun updateProfile(
+        @Part("location") location: String,
+        @Part("mobilePhone") mobilePhone: String,
+        @Part file: MultipartBody.Part
     ): Call<UpdateProfileResponse>
+
 
     @Multipart
     @POST("stories/guest")

@@ -17,20 +17,22 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
                 preferences[NAME_KEY] ?: "",
                 preferences[EMAIL_KEY] ?: "",
                 preferences[PHOTO_URL] ?: "",
+                preferences[PHONE_NUMBER] ?: "",
                 preferences[STATE_KEY] ?: false,
                 token = preferences[TOKEN_KEY] ?: ""
             )
         }
     }
 
-    suspend fun saveUser(user: UserModel) {
+    suspend fun saveUser(user: UserModel?) {
         dataStore.edit { preferences ->
-            preferences[UID] = user.uid
-            preferences[NAME_KEY] = user.name
-            preferences[EMAIL_KEY] = user.email
-            preferences[PHOTO_URL] = user.photoUrl
-            preferences[STATE_KEY] = user.isLogin
-            preferences[TOKEN_KEY] = user.token
+            preferences[UID] = user?.uid ?: ""
+            preferences[NAME_KEY] = user?.name ?: ""
+            preferences[EMAIL_KEY] = user?.email ?: ""
+            preferences[PHOTO_URL] = user?.photoUrl ?: ""
+            preferences[PHONE_NUMBER] = user?.phoneNumber ?: ""
+            preferences[STATE_KEY] = user!!.isLogin
+            preferences[TOKEN_KEY] = user?.token ?: ""
         }
     }
 
@@ -56,6 +58,7 @@ class UserPreference private constructor(private val dataStore: DataStore<Prefer
         private val NAME_KEY = stringPreferencesKey("name")
         private val EMAIL_KEY = stringPreferencesKey("email")
         private val PHOTO_URL = stringPreferencesKey("photoUrl")
+        private val PHONE_NUMBER = stringPreferencesKey("phoneNumber")
         private val STATE_KEY = booleanPreferencesKey("state")
         private val TOKEN_KEY = stringPreferencesKey("token")
 

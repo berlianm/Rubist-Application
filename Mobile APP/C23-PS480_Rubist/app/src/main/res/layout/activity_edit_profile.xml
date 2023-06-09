@@ -182,12 +182,13 @@
                 <EditText
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_profile_location"
+                    android:id="@+id/et_profile_location"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
                     android:fontFamily="@font/poppins_medium"
                     android:textColor="#2B2B2B"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp"
+                    android:hint="@string/location"/>
 
                 <ImageView
                     android:id="@+id/iv_check3"
@@ -229,14 +230,14 @@
 <!--                    android:textSize="14sp" />-->
 
                 <EditText
+                    android:id="@+id/et_profile_number"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_profile_number"
-                    android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
                     android:fontFamily="@font/poppins_medium"
                     android:textColor="#2B2B2B"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp"
+                    android:hint="@string/phone_number"/>
 
                 <ImageView
                     android:id="@+id/iv_check4"

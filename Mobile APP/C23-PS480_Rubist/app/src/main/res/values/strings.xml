@@ -31,4 +31,7 @@
     <string name="phone_number">0823-7324-5687</string>
     <string name="edit">Edit</string>
     <string name="posting">Posting</string>
+    <string name="SaveProfile">are you sure to save this profile?</string>
+    <string name="Profile">Profile</string>
+
 </resources>
