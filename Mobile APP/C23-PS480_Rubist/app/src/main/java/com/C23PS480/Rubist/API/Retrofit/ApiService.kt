@@ -45,19 +45,19 @@ interface ApiService {
     @Multipart
     @POST("/api/updateProfile")
     fun updateProfile(
-        @Part("location") location: String,
-        @Part("mobilePhone") mobilePhone: String,
+        @Part("location") location: RequestBody,
+        @Part("mobilePhone") mobilePhone: RequestBody,
         @Part file: MultipartBody.Part
     ): Call<UpdateProfileResponse>
 
 
+    @Headers("content-type: application/json")
     @Multipart
-    @POST("stories/guest")
+    @POST("/uploadImage")
     fun uploadImage(
-//        @Header("Authorization") authorization: String,
-        @Part file: MultipartBody.Part,
-        @Part("description") description: RequestBody,
+        @Part image: MultipartBody.Part
     ): Call<FileUploadResponse>
+
 
 
     @Multipart

@@ -130,16 +130,15 @@ class EditProfileActivity : AppCompatActivity() {
 
             val location = binding.etProfileLocation.text.toString().toRequestBody("text/plain".toMediaTypeOrNull())
             val mobileNumber = binding.etProfileNumber.text.toString().toRequestBody("text/plain".toMediaTypeOrNull())
-            val requestImageFile = file.asRequestBody("image/jpeg".toMediaType())
-            val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-                "photo",
-                file.name,
-                requestImageFile
+            val requestFile: RequestBody = RequestBody.create(
+                "image/jpeg".toMediaType(),
+                file
             )
+            val multipartImage = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
 
 
             val apiService = ApiConfig.getApiService()
-            val uploadImageRequest = apiService.updateProfile(" ", " ", imageMultipart)
+            val uploadImageRequest = apiService.updateProfile(location, mobileNumber, multipartImage)
             uploadImageRequest.enqueue(object : Callback<UpdateProfileResponse> {
                 override fun onResponse(
                     call: Call<UpdateProfileResponse>,

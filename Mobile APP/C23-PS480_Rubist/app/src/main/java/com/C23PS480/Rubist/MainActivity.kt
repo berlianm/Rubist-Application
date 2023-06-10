@@ -32,6 +32,7 @@ import com.C23PS480.Rubist.Utils.reduceFileImage
 import com.C23PS480.Rubist.databinding.ActivityMainBinding
 
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -146,7 +147,8 @@ class MainActivity : AppCompatActivity() {
     ) {
         if (it.resultCode == RESULT_OK) {
             val myFile = File(currentPhotoPath)
-            getFile = myFile
+            getFile = reduceFileImage(myFile)
+
             uploadImage()
             AfterScanActivity.Image = getFile
             startActivity(Intent(this, AfterScanActivity::class.java))
@@ -180,17 +182,16 @@ class MainActivity : AppCompatActivity() {
 
 
         if (getFile != null) {
-            val file = reduceFileImage(getFile as File)
+            val file = getFile as File
 
-            val description = binding.etDesc.text.toString().toRequestBody("text/plain".toMediaType())
-            val requestImageFile = file.asRequestBody("image/jpeg".toMediaType())
+            val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
             val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-                "photo",
+                "image",
                 file.name,
                 requestImageFile
             )
 
-            val service = ApiConfig.getApiService().uploadImage(imageMultipart, description)
+            val service = ApiConfig.getApiServiceML().uploadImage(imageMultipart)
 
             service.enqueue(object : Callback<FileUploadResponse> {
                 override fun onResponse(
@@ -200,9 +201,12 @@ class MainActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
 //                        setLoading(false)
                         val responseBody = response.body()
-                        if (responseBody != null && !responseBody.error!!) {
-                            Toast.makeText(this@MainActivity, responseBody.message, Toast.LENGTH_SHORT).show()
-//                            finish()
+                        if (responseBody != null ) {
+                            AfterScanActivity.jenisSampah = responseBody.Jenis_Sampah
+                            AfterScanActivity.dampak = responseBody.Dampak_Lingkungan
+                            AfterScanActivity.pembuangan = responseBody.Pembuangan
+                            AfterScanActivity.daurUlang = responseBody.Daur_Ulang
+                            AfterScanActivity.caraDaurUlang = responseBody.Cara_Daur_Ulang
                         }
                     }
                 }

@@ -13,6 +13,11 @@ class AfterScanActivity : AppCompatActivity() {
 
     companion object {
         var Image : File? = null
+        var jenisSampah : String? = null
+        var dampak : String? = null
+        var pembuangan : String? = null
+        var daurUlang : String? = null
+        var caraDaurUlang : String? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,12 +26,18 @@ class AfterScanActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         BottomSheetBehavior.from(binding.bottomSheet).apply {
-            peekHeight=900
+            peekHeight=400
             this.state = BottomSheetBehavior.STATE_COLLAPSED
         }
 
         val result = BitmapFactory.decodeFile(Image?.path)
         binding.ivPriviewImage.setImageBitmap(result)
+
+        if (jenisSampah != null) {
+            binding.tvJenisSampah.text = jenisSampah
+        }
+
+
 
 
     }
