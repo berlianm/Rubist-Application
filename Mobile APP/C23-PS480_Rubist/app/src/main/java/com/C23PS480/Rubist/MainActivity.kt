@@ -147,11 +147,12 @@ class MainActivity : AppCompatActivity() {
     ) {
         if (it.resultCode == RESULT_OK) {
             val myFile = File(currentPhotoPath)
-            getFile = reduceFileImage(myFile)
+            getFile = myFile
 
-            uploadImage()
+//            uploadImage()
             AfterScanActivity.Image = getFile
             startActivity(Intent(this, AfterScanActivity::class.java))
+
 
 //            myFile.let { file ->
 ////          Silakan gunakan kode ini jika mengalami perubahan rotasi
@@ -182,7 +183,7 @@ class MainActivity : AppCompatActivity() {
 
 
         if (getFile != null) {
-            val file = getFile as File
+            val file = reduceFileImage(getFile as File)
 
             val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
             val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
@@ -203,6 +204,7 @@ class MainActivity : AppCompatActivity() {
                         val responseBody = response.body()
                         if (responseBody != null ) {
                             AfterScanActivity.jenisSampah = responseBody.Jenis_Sampah
+                            AfterScanActivity.deskripsi = responseBody.Deskripsi
                             AfterScanActivity.dampak = responseBody.Dampak_Lingkungan
                             AfterScanActivity.pembuangan = responseBody.Pembuangan
                             AfterScanActivity.daurUlang = responseBody.Daur_Ulang

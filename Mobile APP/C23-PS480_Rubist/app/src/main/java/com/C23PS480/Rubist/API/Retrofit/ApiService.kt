@@ -3,6 +3,7 @@ package com.C23PS480.Rubist.API.Retrofit
 import com.C23PS480.Rubist.API.Request.UserRequest
 import com.C23PS480.Rubist.API.Response.AddPostResponse
 import com.C23PS480.Rubist.API.Response.ChangePassResponse
+import com.C23PS480.Rubist.API.Response.DataUserResponse
 import com.C23PS480.Rubist.API.Response.DetailPostResponse
 import com.C23PS480.Rubist.API.Response.FileUploadResponse
 import com.C23PS480.Rubist.API.Response.GetPostResponse
@@ -28,30 +29,30 @@ interface ApiService {
         @Body userRequest: UserRequest
     ): Call<LoginResponse>
 
-    @Headers("content-type: application/json")
+    //@Headers("content-type: application/json")
     @POST("/api/register/")
     fun register(
         @Body userRequest: UserRequest
     ): Call<RegisterResponse>
 
 
-    @Headers("content-type: application/json")
+    //@Headers("content-type: application/json")
     @POST("/api/forget-password/")
     fun changePassword(
         @Body userRequest: UserRequest
     ): Call<ChangePassResponse>
 
-    @Headers("content-type: application/json")
+//    @Headers("content-type: application/json")
     @Multipart
     @POST("/api/updateProfile")
     fun updateProfile(
-        @Part("location") location: RequestBody,
-        @Part("mobilePhone") mobilePhone: RequestBody,
-        @Part file: MultipartBody.Part
+        @Part photo: MultipartBody.Part,
+        @Part("location") location: String,
+        @Part("mobilePhone") mobilePhone: String,
     ): Call<UpdateProfileResponse>
 
 
-    @Headers("content-type: application/json")
+    //@Headers("content-type: application/json")
     @Multipart
     @POST("/uploadImage")
     fun uploadImage(
@@ -77,5 +78,11 @@ interface ApiService {
     fun getPostbyID(
         @Path("postId") postId: String
     ): Call<DetailPostResponse>
+
+
+    @GET("/api/data/{uid}")
+    fun getDatalUser(
+        @Path("username") username: String
+    ): Call<DataUserResponse>
 
 }

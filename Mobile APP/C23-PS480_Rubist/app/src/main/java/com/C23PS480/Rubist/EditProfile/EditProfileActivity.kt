@@ -130,15 +130,16 @@ class EditProfileActivity : AppCompatActivity() {
 
             val location = binding.etProfileLocation.text.toString().toRequestBody("text/plain".toMediaTypeOrNull())
             val mobileNumber = binding.etProfileNumber.text.toString().toRequestBody("text/plain".toMediaTypeOrNull())
-            val requestFile: RequestBody = RequestBody.create(
-                "image/jpeg".toMediaType(),
-                file
+            val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                "photo",
+                file.name,
+                requestImageFile
             )
-            val multipartImage = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
 
 
             val apiService = ApiConfig.getApiService()
-            val uploadImageRequest = apiService.updateProfile(location, mobileNumber, multipartImage)
+            val uploadImageRequest = apiService.updateProfile( imageMultipart, " ", " ")
             uploadImageRequest.enqueue(object : Callback<UpdateProfileResponse> {
                 override fun onResponse(
                     call: Call<UpdateProfileResponse>,
@@ -149,7 +150,7 @@ class EditProfileActivity : AppCompatActivity() {
                         if (responseBody != null) {
                             Toast.makeText(
                                 this@EditProfileActivity,
-                                "Post Uploaded",
+                                responseBody.message,
                                 Toast.LENGTH_SHORT
                             ).show()
                             //navigateBackToStoryList()
@@ -157,7 +158,7 @@ class EditProfileActivity : AppCompatActivity() {
                     } else {
                         Toast.makeText(
                             this@EditProfileActivity,
-                            response.body()?.error,
+                            response.body()?.message,
                             Toast.LENGTH_SHORT
                         ).show()
                     }
