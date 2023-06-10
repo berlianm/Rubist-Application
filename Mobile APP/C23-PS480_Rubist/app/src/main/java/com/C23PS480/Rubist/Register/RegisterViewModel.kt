@@ -49,6 +49,7 @@ class RegisterViewModel (private val pref: UserPreference) : ViewModel(){
                                     name,
                                     email,
                                     "",
+                                    "",
                                     false,
                                     ""
                                 )

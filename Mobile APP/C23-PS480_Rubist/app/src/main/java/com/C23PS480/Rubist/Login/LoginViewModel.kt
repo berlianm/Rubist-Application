@@ -57,6 +57,7 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel() {
                                     responseBody.name,
                                     responseBody.email,
                                     responseBody.photoURL,
+                                    responseBody.phoneNumber,
                                     true,
                                     responseBody.token.accessToken
                                 )

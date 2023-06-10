@@ -41,6 +41,8 @@ class Community : Fragment() {
             // Pindah ke activity lain
             val intent = Intent(activity, AddPost::class.java)
             startActivity(intent)
+//            val intent = Intent(activity, AddPostActivity::class.java)
+//            startActivity(intent)
 
         }
     }
