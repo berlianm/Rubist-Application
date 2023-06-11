@@ -38,6 +38,8 @@ class AfterScanActivity : AppCompatActivity() {
         binding = ActivityAfterScanBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setLoading(true)
+
         BottomSheetBehavior.from(binding.bottomSheet).apply {
             peekHeight=200
             this.state = BottomSheetBehavior.STATE_COLLAPSED
@@ -80,22 +82,28 @@ class AfterScanActivity : AppCompatActivity() {
                     response: Response<FileUploadResponse>
                 ) {
                     if (response.isSuccessful) {
-                        setLoading(false)
                         val responseBody = response.body()
                         if (responseBody != null) {
+                            setLoading(false)
                             binding.tvJenisSampah.text = responseBody.Jenis_Sampah
                             binding.tvDesc.text = responseBody.Deskripsi
                             binding.tvDampakLingkungan.text = responseBody.Dampak_Lingkungan
                             binding.tvPembuangan.text = responseBody.Pembuangan
                             binding.tvDaurUlang.text = responseBody.Daur_Ulang
                             binding.tvCaraDaurUlang.text = responseBody.Cara_Daur_Ulang
+                        }else{
+                            setLoading(true)
+                            Toast.makeText(this@AfterScanActivity, response.body()?.error, Toast.LENGTH_SHORT).show()
+                            finish()
                         }
+
                     }
                 }
 
                 override fun onFailure(call: Call<FileUploadResponse>, t: Throwable) {
-                    setLoading(false)
+                    setLoading(true)
                     Toast.makeText(this@AfterScanActivity, t.message, Toast.LENGTH_SHORT).show()
+                    finish()
                 }
             })
 
@@ -113,10 +121,10 @@ class AfterScanActivity : AppCompatActivity() {
 
     fun setLoading(isLoading : Boolean){
         if (isLoading){
-            binding.loading.visibility = View.VISIBLE
-            binding.loading.elevation = 10f
+            binding.animationView.visibility = View.VISIBLE
+            binding.animationView.elevation = 10f
         }else {
-            binding.loading.visibility = View.GONE
+            binding.animationView.visibility = View.GONE
         }
     }
 }

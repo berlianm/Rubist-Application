@@ -47,8 +47,8 @@ interface ApiService {
     @POST("/api/updateProfile")
     fun updateProfile(
         @Part photo: MultipartBody.Part,
-        @Part("location") location: String,
-        @Part("mobilePhone") mobilePhone: String,
+        @Part("location") location: RequestBody,
+        @Part("mobilePhone") mobilePhone: RequestBody,
     ): Call<UpdateProfileResponse>
 
 
@@ -80,9 +80,9 @@ interface ApiService {
     ): Call<DetailPostResponse>
 
 
-    @GET("/api/data/{uid}")
+    @GET("/api/getData/{uid}")
     fun getDatalUser(
-        @Path("username") username: String
+        @Path("uid") uid: String
     ): Call<DataUserResponse>
 
 }

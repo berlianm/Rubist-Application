@@ -8,6 +8,16 @@
     android:background="#18B255">
 
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/animation_view"
+        app:lottie_rawRes="@raw/animation"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:visibility="gone"
+        android:background="@color/white"/>
+
     <ProgressBar
         android:id="@+id/loading"
         style="?android:attr/progressBarStyle"
@@ -15,7 +25,7 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:layout_gravity="center"
-        android:indeterminateTint="@color/white"/>
+        />
 
     <ImageView
         android:id="@+id/iv_priviewImage"
