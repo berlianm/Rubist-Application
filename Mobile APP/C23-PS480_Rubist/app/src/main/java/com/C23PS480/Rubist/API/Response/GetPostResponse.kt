@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 data class GetPostResponse(
-    @field:SerializedName("sample-post-id")
     val listPost: List<ListPost>,
 
     @field:SerializedName("error")
@@ -14,8 +13,9 @@ data class GetPostResponse(
 
 @Parcelize
 data class ListPost(
-    val title: String,
     val content: String,
     val photoUrl: String,
+    val postId: String,
+    val title: String,
     val userId: String
 ) : Parcelable

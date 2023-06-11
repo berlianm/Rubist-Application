@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.C23PS480.Rubist.Login.LoginViewModel
 import com.C23PS480.Rubist.Model.UserPreference
 import com.C23PS480.Rubist.Register.RegisterViewModel
+import com.C23PS480.Rubist.ViewModel.CommunityViewModel
 
 class ViewModelFactory(private val pref: UserPreference) :
     ViewModelProvider.NewInstanceFactory() {
@@ -19,6 +20,9 @@ class ViewModelFactory(private val pref: UserPreference) :
             }
             modelClass.isAssignableFrom(RegisterViewModel::class.java)->{
                 RegisterViewModel(pref) as T
+            }
+            modelClass.isAssignableFrom(CommunityViewModel::class.java)->{
+                CommunityViewModel(pref) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
