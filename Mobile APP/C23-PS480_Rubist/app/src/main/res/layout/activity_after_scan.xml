@@ -7,6 +7,26 @@
     tools:context=".AfterScan.AfterScanActivity"
     android:background="#18B255">
 
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/animation_view"
+        app:lottie_rawRes="@raw/animation"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:visibility="gone"
+        android:background="@color/white"/>
+
+    <ProgressBar
+        android:id="@+id/loading"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        />
+
     <ImageView
         android:id="@+id/iv_priviewImage"
         android:layout_width="300dp"
@@ -30,8 +50,9 @@
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
+                android:layout_height="20dp"
                 android:scaleType="centerCrop"
+                android:layout_marginTop="5dp"
                 android:src="@drawable/ic_bottom_sheet"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +62,7 @@
                 android:id="@+id/tv_jenisSampah"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Trash"
+                android:text="Jenis Sampah"
                 android:textSize="25dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -50,17 +71,19 @@
 
             <TextView
                 android:id="@+id/tv_desc"
-                android:layout_width="match_parent"
+                android:layout_width="360dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="Lorem ipsum"
+                android:layout_marginTop="8dp"
+                android:justificationMode="inter_word"
+                android:text="Deskripsi"
                 android:textSize="15dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_jenisSampah" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/layoutDaurUlang"
-                android:layout_width="wrap_content"
+                android:layout_width="360dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="@+id/layoutPembuangan"
@@ -84,7 +107,7 @@
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/layoutDampak"
-                android:layout_width="wrap_content"
+                android:layout_width="360dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="@+id/tv_desc"
@@ -101,6 +124,7 @@
                     android:id="@+id/tv_DampakLingkungan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="desc"
                     android:textSize="15dp" />
 
@@ -108,7 +132,7 @@
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/layoutPembuangan"
-                android:layout_width="wrap_content"
+                android:layout_width="360dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="@+id/layoutDampak"
@@ -125,6 +149,7 @@
                     android:id="@+id/tv_Pembuangan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="desc"
                     android:textSize="15dp" />
 
@@ -132,7 +157,7 @@
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:id="@+id/layoutCaraDaur"
-                android:layout_width="wrap_content"
+                android:layout_width="360dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="@+id/layoutDaurUlang"
@@ -149,6 +174,7 @@
                     android:id="@+id/tv_CaraDaurUlang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     android:text="desc"
                     android:textSize="15dp" />
 

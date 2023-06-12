@@ -2,12 +2,17 @@ package com.C23PS480.Rubist.NavBar
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProvider
+import com.C23PS480.Rubist.Fragment.Profile
 import com.C23PS480.Rubist.MainViewModel
 import com.C23PS480.Rubist.Model.UserPreference
 import com.C23PS480.Rubist.R
@@ -20,19 +25,39 @@ class NavBarActivity : AppCompatActivity() {
     private lateinit var binding : ActivityNavBarBinding
     private lateinit var mainViewModel: MainViewModel
 
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNavBarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         mainViewModel = ViewModelProvider(
             this,
             ViewModelFactory(UserPreference.getInstance(dataStore))
         )[MainViewModel::class.java]
 
+        mainViewModel.getUser().observe(this) { user ->
+             binding.tvUsername.text = user.name
+        }
+
+
+
         binding.signoutMenu.setOnClickListener{
             logoutDialog()
         }
+
+        binding.btnBack.setOnClickListener{
+            onBackPressed()
+        }
+
+        binding.profileMenu.setOnClickListener{
+            finish()
+        }
     }
+
+
 
     private fun logoutDialog() {
         val dialogMessage = getString(R.string.logout_msg)

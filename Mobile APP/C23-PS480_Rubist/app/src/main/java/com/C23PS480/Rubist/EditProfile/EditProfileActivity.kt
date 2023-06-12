@@ -8,6 +8,8 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
+import android.view.Choreographer.FrameCallback
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -17,6 +19,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
 import com.C23PS480.Rubist.API.Response.AddPostResponse
+import com.C23PS480.Rubist.API.Response.DataUserResponse
 import com.C23PS480.Rubist.API.Response.FileUploadResponse
 import com.C23PS480.Rubist.API.Response.UpdateProfileResponse
 import com.C23PS480.Rubist.API.Retrofit.ApiConfig
@@ -28,6 +31,7 @@ import com.C23PS480.Rubist.R
 import com.C23PS480.Rubist.Utils.uriToFile
 import com.C23PS480.Rubist.ViewModelFactory
 import com.C23PS480.Rubist.databinding.ActivityEditProfileBinding
+import com.bumptech.glide.Glide
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -42,7 +46,7 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "Setting")
+
 class EditProfileActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityEditProfileBinding
@@ -52,18 +56,20 @@ class EditProfileActivity : AppCompatActivity() {
 
     companion object{
         private const val MAXIMAL_SIZE = 1000000
+        var uid : String? = null
+        var name : String? = null
+        var email : String? = null
+        var photoUrl : String? = null
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        mainViewModel = ViewModelProvider(
-            this,
-            ViewModelFactory(UserPreference.getInstance(dataStore))
-        )[MainViewModel::class.java]
 
-        setupViewModel()
+
+
+        setupModel()
         binding.userAvatar.setOnClickListener{
             startGallery()
         }
@@ -72,15 +78,16 @@ class EditProfileActivity : AppCompatActivity() {
             SaveDialog()
         }
 
+        binding.btnBack.setOnClickListener{
+            onBackPressed()
+        }
+
     }
 
-    private fun setupViewModel() {
+    private fun setupModel(){
+        binding.tvProfileName.text = name
+        binding.tvProfileEmail.text = email
 
-        mainViewModel.getUser().observe(this) { user ->
-            binding.tvProfileName.text = user.name
-            binding.tvProfileEmail.text = user.email
-
-        }
     }
 
     private fun startGallery() {
@@ -130,15 +137,16 @@ class EditProfileActivity : AppCompatActivity() {
 
             val location = binding.etProfileLocation.text.toString().toRequestBody("text/plain".toMediaTypeOrNull())
             val mobileNumber = binding.etProfileNumber.text.toString().toRequestBody("text/plain".toMediaTypeOrNull())
-            val requestFile: RequestBody = RequestBody.create(
-                "image/jpeg".toMediaType(),
-                file
+            val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                "photo",
+                file.name,
+                requestImageFile
             )
-            val multipartImage = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
 
 
             val apiService = ApiConfig.getApiService()
-            val uploadImageRequest = apiService.updateProfile(location, mobileNumber, multipartImage)
+            val uploadImageRequest = apiService.updateProfile( imageMultipart, location, mobileNumber)
             uploadImageRequest.enqueue(object : Callback<UpdateProfileResponse> {
                 override fun onResponse(
                     call: Call<UpdateProfileResponse>,
@@ -149,15 +157,16 @@ class EditProfileActivity : AppCompatActivity() {
                         if (responseBody != null) {
                             Toast.makeText(
                                 this@EditProfileActivity,
-                                "Post Uploaded",
+                                responseBody.message,
                                 Toast.LENGTH_SHORT
                             ).show()
+                            finish()
                             //navigateBackToStoryList()
                         }
                     } else {
                         Toast.makeText(
                             this@EditProfileActivity,
-                            response.body()?.error,
+                            response.body()?.message,
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -191,4 +200,39 @@ class EditProfileActivity : AppCompatActivity() {
         bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
         return file
     }
+
+//    private fun getDataUser(){
+//
+//        val getData = ApiConfig.getApiService().getDatalUser(uid!!)
+//        getData.enqueue(object : Callback<DataUserResponse>{
+//            override fun onResponse(
+//                call: Call<DataUserResponse>,
+//                response: Response<DataUserResponse>
+//            ) {
+//                if(response.isSuccessful){
+//                    val responseBody = response.body()
+//                    Toast.makeText(this@EditProfileActivity, "Data $uid", Toast.LENGTH_SHORT).show()
+//                    binding.apply {
+//                        tvProfileName.text = responseBody?.name
+//                        tvProfileEmail.text = responseBody?.email
+//                        val profilePhoto= responseBody?.photoUrl
+//                        Glide.with(this@EditProfileActivity)
+//                            .load(profilePhoto)
+//                            .circleCrop()
+//                            .into(userAvatar)
+//                        Log.d("Avatar", "Profile Photo: $profilePhoto")
+//                    }
+//
+//                }else{
+//                    Toast.makeText(this@EditProfileActivity, "gagal", Toast.LENGTH_SHORT).show()
+//                }
+//
+//            }
+//
+//            override fun onFailure(call: Call<DataUserResponse>, t: Throwable) {
+//                Toast.makeText(this@EditProfileActivity, t.message, Toast.LENGTH_SHORT).show()
+//            }
+//
+//        })
+//    }
 }

@@ -22,6 +22,7 @@ class Home : Fragment() {
             // Pindah ke activity lain
             val intent = Intent(activity, NavBarActivity::class.java)
             startActivity(intent)
+
         }
     }
     override fun onCreateView(

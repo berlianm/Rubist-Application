@@ -9,10 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
+import com.C23PS480.Rubist.API.Response.DataUserResponse
+import com.C23PS480.Rubist.API.Retrofit.ApiConfig
 import com.C23PS480.Rubist.EditProfile.EditProfileActivity
 import com.C23PS480.Rubist.MainViewModel
 import com.C23PS480.Rubist.Model.UserPreference
@@ -20,6 +23,10 @@ import com.C23PS480.Rubist.R
 import com.C23PS480.Rubist.ViewModelFactory
 import com.C23PS480.Rubist.databinding.FragmentProfileBinding
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "Setting")
 class Profile : Fragment(), View.OnClickListener {
@@ -28,6 +35,8 @@ class Profile : Fragment(), View.OnClickListener {
     private var _binding:FragmentProfileBinding? = null;
     private val binding get() = _binding!!;
 
+    private var uid : String? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mainViewModel = ViewModelProvider(
@@ -35,9 +44,14 @@ class Profile : Fragment(), View.OnClickListener {
             ViewModelFactory(UserPreference.getInstance(requireContext().dataStore))
         )[MainViewModel::class.java]
 
-        setupViewModel()
+        mainViewModel.getUser().observe(requireActivity()) { user ->
+            uid = user.uid
+        }
+
+        getDataUser()
         val btnEdit : Button = view.findViewById(R.id.btn_EditProfile)
         btnEdit.setOnClickListener(this)
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -47,41 +61,60 @@ class Profile : Fragment(), View.OnClickListener {
         return view;
     }
 
-    private fun setupViewModel() {
-        mainViewModel.getUser().observe(requireActivity()) { user ->
-            binding.tvProfileName.text = user.name
-            binding.tvProfileEmail.text = user.email
-            binding.tvProfileNumber.text = user.phoneNumber
-            val profilePhoto = user.photoUrl
-            if (profilePhoto != null) {
-                Glide.with(this)
-                    .load(profilePhoto)
-                    .into(binding.userAvatar)
+    private fun getDataUser(){
+        setLoading(true)
+        val getData = ApiConfig.getApiService().getDatalUser(uid!!)
+        getData.enqueue(object : Callback<DataUserResponse>{
+            override fun onResponse(
+                call: Call<DataUserResponse>,
+                response: Response<DataUserResponse>
+            ) {
+                if(response.isSuccessful){
+                    setLoading(false)
+                    val responseBody = response.body()
+//                    Toast.makeText(requireContext(), "Data $uid", Toast.LENGTH_SHORT).show()
+                    binding.apply {
+                        EditProfileActivity.uid = responseBody?.uid
+                        EditProfileActivity.name = responseBody?.name
+                        EditProfileActivity.email = responseBody?.email
+                        EditProfileActivity.photoUrl = responseBody?.photoUrl
+
+                        tvProfileName.text = responseBody?.name
+                        tvProfileEmail.text = responseBody?.email
+                        tvProfileNumber.text = responseBody?.mobilePhone
+                        tvProfileLocation.text = responseBody?.location
+                        val profilePhoto= responseBody?.photoUrl
+//                        Glide.with(requireContext())
+//                            .load(profilePhoto)
+//                            .circleCrop()
+//                            .into(userAvatar)
+                        Log.d("Avatar", "Profile Photo: $profilePhoto")
+                    }
+
+                }else{
+                    setLoading(false)
+                    Toast.makeText(requireContext(), "gagal", Toast.LENGTH_SHORT).show()
+                }
+
             }
-            Log.d("Avatar", "Profile Photo: $profilePhoto")
+
+            override fun onFailure(call: Call<DataUserResponse>, t: Throwable) {
+                setLoading(false)
+                Toast.makeText(requireContext(), t.message, Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
+    fun setLoading(isLoading : Boolean){
+        if (isLoading){
+            binding.loading.visibility = View.VISIBLE
+            binding.loading.elevation = 10f
+        }else{
+            binding.loading.visibility = View.GONE
         }
     }
 
-
-//    private fun logoutDialog() {
-//        val dialogMessage = getString(R.string.logout_msg)
-//        val dialogTitle = getString(R.string.logout)
-//
-//
-//        val alertDialogBuilder = AlertDialog.Builder(requireActivity())
-//        alertDialogBuilder.setTitle(dialogTitle)
-//
-//        alertDialogBuilder
-//            .setMessage(dialogMessage)
-//            .setCancelable(false)
-//            .setPositiveButton(getString(R.string.yes)) { _, _ ->
-//              mainViewModel.logout()
-//            }
-//            .setNegativeButton(getString(R.string.No)) { dialog, _ -> dialog.cancel() }
-//        val alertDialog = alertDialogBuilder.create()
-//        alertDialog.show()
-//    }
-//
     override fun onClick(v: View?) {
         startActivity(Intent(requireActivity(), EditProfileActivity::class.java))
     }
