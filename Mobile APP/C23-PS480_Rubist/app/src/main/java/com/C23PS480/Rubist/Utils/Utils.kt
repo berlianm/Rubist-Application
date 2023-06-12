@@ -41,7 +41,8 @@ fun uriToFile(selectedImg: Uri, context: Context): File {
     return myFile
 }
 
-private const val MAXIMAL_SIZE = 1000000
+private const val MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
+
 fun reduceFileImage(file: File): File {
     val bitmap = BitmapFactory.decodeFile(file.path)
     var compressQuality = 100
@@ -52,14 +53,8 @@ fun reduceFileImage(file: File): File {
         val bmpPicByteArray = bmpStream.toByteArray()
         streamLength = bmpPicByteArray.size
         compressQuality -= 5
-    } while (streamLength > MAXIMAL_SIZE)
-    while(streamLength > 100000){
-        compressQuality -= 1
-        val bmpStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, bmpStream)
-        val bmpPicByteArray = bmpStream.toByteArray()
-        streamLength = bmpPicByteArray.size
-    }
+    } while (streamLength > MAX_FILE_SIZE)
+
     bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
     return file
 }

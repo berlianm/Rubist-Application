@@ -9,7 +9,7 @@ data class DataUserResponse(
     @field:SerializedName("email")
     val email: String? = null,
 
-    @field:SerializedName("photoUrl")
+    @field:SerializedName("photoURL")
     val photoUrl: String? = null,
 
     @field:SerializedName("uid")
