@@ -46,7 +46,10 @@ class RegisterViewModel (private val pref: UserPreference) : ViewModel(){
                             pref.saveUser(
                                 UserModel(
                                     "",
-                                    //name,
+                                    name,
+                                    email,
+                                    "",
+                                    "",
                                     false,
                                     ""
                                 )

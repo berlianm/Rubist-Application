@@ -1,60 +1,206 @@
 package com.C23PS480.Rubist.Fragment
 
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.C23PS480.Rubist.R
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
+import androidx.fragment.app.Fragment
+import com.C23PS480.Rubist.API.Response.AddPostResponse
+import com.C23PS480.Rubist.API.Retrofit.ApiConfig
+import com.C23PS480.Rubist.Utils.createCustomTempFile
+import com.C23PS480.Rubist.Utils.uriToFile
+import com.C23PS480.Rubist.databinding.FragmentAddPostBinding
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [AddPost.newInstance] factory method to
- * create an instance of this fragment.
- */
+@Suppress("DEPRECATION")
 class AddPost : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var getFile: File? = null
+    private lateinit var binding: FragmentAddPostBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState:Bundle?
+    ): View{
+        binding = FragmentAddPostBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if (!allPermissionsGranted()){
+            requestPermissions(
+                REQUIRED_PERMISSIONS,
+                REQUEST_CODE_PERMISSIONS
+            )
+        }
+
+        binding.ivCamera.setOnClickListener{ startTakePhoto() }
+        binding.tvGelery.setOnClickListener { startGallery() }
+        binding.tvUpload.setOnClickListener { uploadImage() }
+    }
+
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(
+            requireContext(),
+            it
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+
+    companion object {
+        private val REQUIRED_PERMISSIONS = arrayOf(android.Manifest.permission.CAMERA)
+        private const val REQUEST_CODE_PERMISSIONS = 10
+        private const val MAXIMAL_SIZE = 1000000
+    }
+
+    @SuppressLint("QueryPermissionsNeeded")
+    private fun startTakePhoto() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        intent.resolveActivity(requireActivity().packageManager)
+
+        createCustomTempFile(requireContext().applicationContext).also {
+            val photoURI: Uri = FileProvider.getUriForFile(
+                requireContext(),
+                "com.C23PS480.Rubist",
+                it
+            )
+            currentPhotoPath = it.absolutePath
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+            launcherIntentCamera.launch(intent)
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_post, container, false)
+    private fun startGallery() {
+        val intent = Intent()
+        intent.action = Intent.ACTION_GET_CONTENT
+        intent.type = "image/*"
+        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        launcherIntentGallery.launch(chooser)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AddPost.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AddPost().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    private lateinit var currentPhotoPath: String
+    private val launcherIntentCamera = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) {
+        if (it.resultCode == Activity.RESULT_OK) {
+            val myFile = File(currentPhotoPath)
+
+            myFile.let { file ->
+                // Silakan gunakan kode ini jika mengalami perubahan rotasi
+//                rotateFile(file)
+                getFile = file
+                binding.previewImage.setImageBitmap(BitmapFactory.decodeFile(file.path))
             }
+        }
     }
+
+    private val launcherIntentGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val selectedImg = result.data?.data as Uri
+            selectedImg.let { uri ->
+                val myFile = uriToFile(uri, requireContext())
+                getFile = myFile
+                binding.previewImage.setImageURI(uri)
+            }
+        }
+    }
+
+    private fun uploadImage(){
+        if (getFile != null){
+            val file = reduceFileImage(getFile as File)
+
+            val description = binding.etDesc.text.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+            val title = binding.etTitle.text.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+            val requestImageFile = file.asRequestBody("image/jpeg".toMediaType())
+            val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
+                "photo",
+                file.name,
+                requestImageFile
+            )
+
+            val apiService = ApiConfig.getApiService()
+            val uploadImageRequest = apiService.addPost(title, description, imageMultipart)
+            uploadImageRequest.enqueue(object : Callback<AddPostResponse>{
+                override fun onResponse(
+                    call: Call<AddPostResponse>,
+                    response: Response<AddPostResponse>
+                ) {
+                    if (response.isSuccessful){
+                        val responseBody = response.body()
+                        if( responseBody != null ){
+                            Toast.makeText(
+                                requireContext(),
+                                "Post Uploaded",
+                                Toast.LENGTH_SHORT
+                            ).show()
+//                            navigateBackToStoryList()
+                        }
+                    } else{
+                        Toast.makeText(
+                            requireContext(),
+                            response.message(),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<AddPostResponse>, t: Throwable) {
+                    Toast.makeText(requireContext(), t.message, Toast.LENGTH_SHORT).show()
+                }
+            })
+        } else{
+            Toast.makeText(
+                requireContext(),
+                "Masukkan Gambar Terlebih Dahulu",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun reduceFileImage(file: File): File {
+        val bitmap = BitmapFactory.decodeFile(file.path)
+        var compressQuality = 100
+        var streamLength: Int
+        do {
+            val bmpStream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, bmpStream)
+            val bmpPicByteArray = bmpStream.toByteArray()
+            streamLength = bmpPicByteArray.size
+            compressQuality -= 5
+        } while (streamLength > MAXIMAL_SIZE)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
+        return file
+    }
+
+
+//    private fun navigateBackToStoryList() {
+//        // Implement code to navigate back to the list of stories
+//        findNavController().navigateUp()
+//    }
 }

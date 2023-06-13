@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardMaxElevation="10dp"
+    app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="#18B255">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp" >
+
+        <TextView
+            android:id="@+id/tv_popup"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Give Your Trash a Shot! \nCapture or Choose from Gallery?"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/white"/>
+
+        <ImageView
+            android:id="@+id/iv_popupCamera"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_camera_white"
+            app:layout_constraintStart_toStartOf="@+id/tv_popup"
+            app:layout_constraintTop_toBottomOf="@+id/tv_popup" />
+
+        <TextView
+            android:id="@+id/tv_popupCamera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kamera"
+            app:layout_constraintEnd_toEndOf="@+id/iv_popupCamera"
+            app:layout_constraintStart_toStartOf="@+id/iv_popupCamera"
+            app:layout_constraintTop_toBottomOf="@+id/iv_popupCamera"
+            android:textColor="@color/white"/>
+
+        <ImageView
+            android:id="@+id/iv_popupGallery"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:src="@drawable/ic_gallery_white"
+            app:layout_constraintEnd_toEndOf="@+id/tv_popup"
+            app:layout_constraintTop_toBottomOf="@+id/tv_popup" />
+
+        <TextView
+            android:id="@+id/tv_popupGallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gallery"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="@+id/iv_popupGallery"
+            app:layout_constraintStart_toStartOf="@+id/iv_popupGallery"
+            app:layout_constraintTop_toBottomOf="@+id/iv_popupGallery" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -54,7 +54,10 @@ class LoginViewModel(private val pref: UserPreference) : ViewModel() {
                             if (getUser().value == null) pref.saveUser(
                                 UserModel(
                                     responseBody.uid,
-                                    //responseBody.Body.name,
+                                    responseBody.name,
+                                    responseBody.email,
+                                    responseBody.photoURL,
+                                    responseBody.phoneNumber,
                                     true,
                                     responseBody.token.accessToken
                                 )

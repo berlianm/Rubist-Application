@@ -30,4 +30,18 @@
     <string name="mobile_number">Mobile Number</string>
     <string name="phone_number">0823-7324-5687</string>
     <string name="edit">Edit</string>
+    <string name="posting">Posting</string>
+    <string name="description">Description</string>
+    <string name="search">Search</string>
+    <string name="community">Community</string>
+    <string name="SaveProfile">are you sure to save this profile?</string>
+    <string name="Profile">Profile</string>
+    <string name="hello">Hello !</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="date">Sunday, 01 January 2023</string>
+    <string name="post_title">Post Title</string>
+    <string name="comments">Comments</string>
+    <string name="comment">Comment...</string>
+
 </resources>

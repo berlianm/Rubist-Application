@@ -2,17 +2,26 @@ package com.C23PS480.Rubist
 
 import android.content.Context
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.databinding.DataBindingUtil
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
@@ -27,11 +36,15 @@ import com.C23PS480.Rubist.Fragment.Home
 import com.C23PS480.Rubist.Fragment.Profile
 import com.C23PS480.Rubist.Login.LoginActivity
 import com.C23PS480.Rubist.Model.UserPreference
+import com.C23PS480.Rubist.OnBoard.OnBoardActivity
 import com.C23PS480.Rubist.Utils.createCustomTempFile
 import com.C23PS480.Rubist.Utils.reduceFileImage
+import com.C23PS480.Rubist.Utils.uriToFile
 import com.C23PS480.Rubist.databinding.ActivityMainBinding
+import com.C23PS480.Rubist.databinding.PopupLayoutBinding
 
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -48,6 +61,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var currentPhotoPath: String
     private var getFile: File? = null
 
+    private lateinit var popupWindow: PopupWindow
+    private lateinit var popupBinding: PopupLayoutBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -58,8 +75,10 @@ class MainActivity : AppCompatActivity() {
             ViewModelFactory(UserPreference.getInstance(dataStore))
         )[MainViewModel::class.java]
 
+        //startActivity(Intent(this@MainActivity, OnBoardActivity::class.java))
 
-        setupViewModel()
+
+        OnBoard()
 
         if (!allPermissionsGranted()) {
             ActivityCompat.requestPermissions(
@@ -69,9 +88,28 @@ class MainActivity : AppCompatActivity() {
             )
         }
         binding.camera.setOnClickListener{
-            startTakePhoto()
+//            startTakePhoto()
+            popupWindow()
         }
 
+    }
+
+    private fun OnBoard(){
+        val sharedPrefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val isFirstInstall = sharedPrefs.getBoolean("isFirstInstall", true)
+
+        if (isFirstInstall) {
+            // Navigasikan ke aktivitas dengan MotionLayout (misalnya IntroductionActivity)
+            val intent = Intent(this, OnBoardActivity::class.java)
+            startActivity(intent)
+
+            // Setel status penginstalan ke false
+            val editor = sharedPrefs.edit()
+            editor.putBoolean("isFirstInstall", false)
+            editor.apply()
+        } else {
+           setupViewModel()
+        }
     }
 
 
@@ -137,8 +175,65 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun popupWindow() {
+        val inflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        popupBinding = PopupLayoutBinding.inflate(inflater)
+        val popupView = popupBinding.root
+        popupWindow = PopupWindow(popupView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+
+        // Mengatur pop-up agar dapat ditutup saat klik di luar pop-up
+        popupWindow.isOutsideTouchable = true
+        popupWindow.isFocusable = true
+
+        // Menangani interaksi klik saat menutup pop-up
+        popupWindow.setTouchInterceptor { _, event ->
+            if (event.action == MotionEvent.ACTION_OUTSIDE) {
+                popupWindow.dismiss()
+                true
+            } else {
+                false
+            }
+        }
+
+        popupWindow.showAtLocation(binding.root, Gravity.CENTER, 0, 0)
+
+        popupBinding.ivPopupCamera.setOnClickListener {
+            startTakePhoto()
+        }
+
+        popupBinding.ivPopupGallery.setOnClickListener {
+            startGallery()
+        }
+    }
+
+
+
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(baseContext, it) == PackageManager.PERMISSION_GRANTED
+    }
+
+
+
+    private fun startGallery() {
+        val intent = Intent()
+        intent.action = Intent.ACTION_GET_CONTENT
+        intent.type = "image/*"
+        val chooser = Intent.createChooser(intent, "Choose a Picture")
+        launcherIntentGallery.launch(chooser)
+    }
+
+    private val launcherIntentGallery = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val selectedImg = result.data?.data as Uri
+            selectedImg.let { uri ->
+                val myFile = uriToFile(uri, this)
+                getFile = myFile
+                startActivity(Intent(this, AfterScanActivity::class.java))
+                AfterScanActivity.Image = getFile
+            }
+        }
     }
 
     private val launcherIntentCamera = registerForActivityResult(
@@ -147,9 +242,12 @@ class MainActivity : AppCompatActivity() {
         if (it.resultCode == RESULT_OK) {
             val myFile = File(currentPhotoPath)
             getFile = myFile
-            uploadImage()
-            AfterScanActivity.Image = getFile
+
             startActivity(Intent(this, AfterScanActivity::class.java))
+//            uploadImage()
+            AfterScanActivity.Image = getFile
+
+
 
 //            myFile.let { file ->
 ////          Silakan gunakan kode ini jika mengalami perubahan rotasi
@@ -182,15 +280,14 @@ class MainActivity : AppCompatActivity() {
         if (getFile != null) {
             val file = reduceFileImage(getFile as File)
 
-            val description = binding.etDesc.text.toString().toRequestBody("text/plain".toMediaType())
-            val requestImageFile = file.asRequestBody("image/jpeg".toMediaType())
+            val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
             val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
-                "photo",
+                "image",
                 file.name,
                 requestImageFile
             )
 
-            val service = ApiConfig.getApiService().uploadImage(imageMultipart, description)
+            val service = ApiConfig.getApiServiceML().uploadImage(imageMultipart)
 
             service.enqueue(object : Callback<FileUploadResponse> {
                 override fun onResponse(
@@ -200,9 +297,13 @@ class MainActivity : AppCompatActivity() {
                     if (response.isSuccessful) {
 //                        setLoading(false)
                         val responseBody = response.body()
-                        if (responseBody != null && !responseBody.error!!) {
-                            Toast.makeText(this@MainActivity, responseBody.message, Toast.LENGTH_SHORT).show()
-//                            finish()
+                        if (responseBody != null ) {
+                            AfterScanActivity.jenisSampah = responseBody.Jenis_Sampah
+                            AfterScanActivity.deskripsi = responseBody.Deskripsi
+                            AfterScanActivity.dampak = responseBody.Dampak_Lingkungan
+                            AfterScanActivity.pembuangan = responseBody.Pembuangan
+                            AfterScanActivity.daurUlang = responseBody.Daur_Ulang
+                            AfterScanActivity.caraDaurUlang = responseBody.Cara_Daur_Ulang
                         }
                     }
                 }

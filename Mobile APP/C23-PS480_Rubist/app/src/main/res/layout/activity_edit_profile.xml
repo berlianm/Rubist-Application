@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Profile.ProfileActivity">
+    tools:context=".EditProfile.EditProfileActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,12 +28,25 @@
             android:text="@string/profile"
             android:textColor="#2B2B2B"
             android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Done"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="340dp"
+            android:textColor="#0D6EFD"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            />
+
+
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp">
+        android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/user_avatar"
             android:layout_width="75dp"
@@ -85,6 +98,15 @@
                     android:text="@string/nama_user"
                     android:textColor="#2B2B2B"
                     android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/iv_check1"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_yes"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="320dp"
+                    android:visibility="visible"/>
             </RelativeLayout>
         </LinearLayout>
 
@@ -116,6 +138,15 @@
                     android:text="@string/email"
                     android:textColor="#2B2B2B"
                     android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/iv_check2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_yes"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="320dp"
+                    android:visibility="visible"/>
             </RelativeLayout>
         </LinearLayout>
         <LinearLayout
@@ -136,16 +167,36 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/form_background">
 
-                <TextView
-                    android:id="@+id/tv_profile_location"
-                    android:layout_width="wrap_content"
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_profile_location"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_marginLeft="15dp"-->
+<!--                    android:fontFamily="@font/poppins_medium"-->
+<!--                    android:text="@string/indonesia"-->
+<!--                    android:textColor="#2B2B2B"-->
+<!--                    android:textSize="14sp" />-->
+
+                <EditText
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
+                    android:id="@+id/et_profile_location"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="@string/indonesia"
                     android:textColor="#2B2B2B"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:hint="@string/location"/>
+
+                <ImageView
+                    android:id="@+id/iv_check3"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_yes"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="320dp"
+                    android:visibility="gone"/>
             </RelativeLayout>
         </LinearLayout>
         <LinearLayout
@@ -166,30 +217,38 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/form_background">
 
-                <TextView
-                    android:id="@+id/tv_profile_number"
-                    android:layout_width="wrap_content"
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_profile_number"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_marginLeft="15dp"-->
+<!--                    android:fontFamily="@font/poppins_medium"-->
+<!--                    android:text="@string/phone_number"-->
+<!--                    android:textColor="#2B2B2B"-->
+<!--                    android:textSize="14sp" />-->
+
+                <EditText
+                    android:id="@+id/et_profile_number"
+                    android:layout_width="300dp"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="@string/phone_number"
                     android:textColor="#2B2B2B"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    android:hint="@string/phone_number"/>
+
+                <ImageView
+                    android:id="@+id/iv_check4"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_yes"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="320dp"
+                    android:visibility="gone"/>
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_edit"
-        android:layout_width="335dp"
-        android:layout_height="55dp"
-        android:layout_gravity="center"
-        android:fontFamily="@font/raleway_semibold"
-        android:text="@string/edit"
-        android:textSize="14sp" />
-
-
 
 
 </LinearLayout>
