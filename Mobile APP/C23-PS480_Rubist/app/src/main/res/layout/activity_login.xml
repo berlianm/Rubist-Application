@@ -25,8 +25,9 @@
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fontFamily="@font/poppins_medium"
             android:inputType="textEmailAddress"
-            android:textSize="18dp" />
+            android:textSize="14sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -56,8 +57,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:ems="10"
+            android:fontFamily="@font/poppins_medium"
             android:inputType="textPassword"
-            android:textSize="18dp"
+            android:textSize="14sp"
             app:passwordToggleEnabled="true" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -68,8 +70,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="550dp"
         android:alpha="1"
-        android:text="Hello !"
-        android:textSize="30dp"
+        android:fontFamily="@font/raleway_bold"
+        android:text="@string/hello"
+        android:textColor="#2B2B2B"
+        android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,10 +83,14 @@
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="300dp"
-        android:layout_height="52dp"
+        android:layout_height="45dp"
         android:layout_marginTop="16dp"
         android:alpha="1"
-        android:text="Sign In"
+        android:background="@drawable/background_green_verydark"
+        android:fontFamily="@font/raleway_semibold"
+        android:text="@string/sign_in"
+        android:textAllCaps="false"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_forget" />
@@ -113,7 +121,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:alpha="1"
+            android:fontFamily="@font/raleway_medium"
             android:text="New user?"
+            android:textSize="16sp"
             tools:layout_editor_absoluteX="126dp"
             tools:layout_editor_absoluteY="531dp" />
 
@@ -122,8 +132,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:alpha="1"
+            android:fontFamily="@font/raleway_medium"
             android:text=" Create account"
-            android:textColor="#FF0000"
+            android:textColor="#1A1D1E"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
@@ -157,7 +169,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins"
         android:text="Forget Password"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@+id/layoutPassword"
         app:layout_constraintTop_toBottomOf="@+id/layoutPassword" />
 

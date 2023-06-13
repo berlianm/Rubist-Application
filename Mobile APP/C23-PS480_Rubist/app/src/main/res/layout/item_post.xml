@@ -5,15 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="6dp"
-    app:cardCornerRadius="16dp"
+    app:cardCornerRadius="8dp"
     app:cardMaxElevation="5dp"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="24dp"
-        android:background="@drawable/background_green_post">
+        android:padding="24dp">
 
         <ImageView
             android:id="@+id/iv_item_photo"

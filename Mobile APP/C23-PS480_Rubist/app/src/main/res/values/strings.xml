@@ -36,5 +36,12 @@
     <string name="community">Community</string>
     <string name="SaveProfile">are you sure to save this profile?</string>
     <string name="Profile">Profile</string>
+    <string name="hello">Hello !</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="date">Sunday, 01 January 2023</string>
+    <string name="post_title">Post Title</string>
+    <string name="comments">Comments</string>
+    <string name="comment">Comment...</string>
 
 </resources>
