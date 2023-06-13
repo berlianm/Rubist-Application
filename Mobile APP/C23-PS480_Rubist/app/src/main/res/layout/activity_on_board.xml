@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#18B255"
+    android:id="@+id/motionLayout"
     app:layoutDescription="@xml/activity_on_board_scene"
     tools:context=".OnBoard.OnBoardActivity">
 

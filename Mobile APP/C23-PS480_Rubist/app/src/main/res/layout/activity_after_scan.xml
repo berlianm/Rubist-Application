@@ -35,10 +35,41 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="35dp"/>
 
+    <TextView
+        android:id="@+id/tv_ket"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Belum Puas? \nCoba Scan Ulang dan Dapatkan Hasil yang Lebih Memuaskan!"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="270dp"/>
+
+
+    <ImageView
+        android:id="@+id/btnCamera"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="440dp"
+        android:layout_marginRight="180dp"
+        android:src="@drawable/ic_camera" />
+
+    <ImageView
+        android:id="@+id/btnGallery"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="180dp"
+        android:layout_marginTop="440dp"
+        android:src="@drawable/ic_galery" />
+
     <FrameLayout
         android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="800dp"
+        android:layout_height="900dp"
         android:layout_gravity="bottom"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         android:background="@drawable/bottom_sheet">

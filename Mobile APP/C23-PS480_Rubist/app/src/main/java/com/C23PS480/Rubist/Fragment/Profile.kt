@@ -24,6 +24,7 @@ import com.C23PS480.Rubist.ViewModelFactory
 import com.C23PS480.Rubist.databinding.FragmentProfileBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestOptions
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -84,10 +85,13 @@ class Profile : Fragment(), View.OnClickListener {
                         tvProfileNumber.text = responseBody?.mobilePhone
                         tvProfileLocation.text = responseBody?.location
                         val profilePhoto= responseBody?.photoUrl
-//                        Glide.with(requireContext())
-//                            .load(profilePhoto)
-//                            .circleCrop()
-//                            .into(userAvatar)
+
+
+                        Glide.with(requireContext())
+                            .load(profilePhoto)
+                            .apply(RequestOptions().placeholder(R.drawable.avatar))
+                            .circleCrop()
+                            .into(userAvatar)
                         Log.d("Avatar", "Profile Photo: $profilePhoto")
                     }
 

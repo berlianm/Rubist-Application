@@ -67,6 +67,9 @@ dependencies {
 
     //lottie
     implementation "com.airbnb.android:lottie:3.4.4"
+
+    //data  binding
+    implementation 'androidx.databinding:databinding-runtime:8.0.2'
     //glide
     implementation 'com.github.bumptech.glide:glide:4.15.1'
     //retrofit
