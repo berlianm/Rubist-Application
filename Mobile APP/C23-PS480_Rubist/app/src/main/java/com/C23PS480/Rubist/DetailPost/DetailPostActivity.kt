@@ -20,7 +20,7 @@ class DetailPostActivity : AppCompatActivity() {
     private lateinit var detailPostViewModel: DetailPostViewModel
 
     companion object {
-        const val KEY = "EXTRA_STORY"
+        const val KEY = "EXTRA_POST"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +32,7 @@ class DetailPostActivity : AppCompatActivity() {
         progressBar = binding.progressBar
 
         val post = intent.getStringExtra(KEY)
+
         detailPostViewModel = ViewModelProvider(this)[DetailPostViewModel::class.java]
 
         post?.let{
@@ -59,6 +60,7 @@ class DetailPostActivity : AppCompatActivity() {
             binding.tvUsername.text = post.displayName
             binding.tvTitle.text = post.title
             binding.tvDesc.text = post.content
+            binding.tvDate.text = post.createdAt
             Glide.with(this)
                 .load(post.photoUrl)
                 .into(binding.tvPhoto)

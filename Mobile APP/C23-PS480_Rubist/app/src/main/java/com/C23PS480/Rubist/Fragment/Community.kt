@@ -57,14 +57,8 @@ class Community : Fragment() {
             ViewModelFactory(UserPreference.getInstance(requireContext().dataStore))
         )[CommunityViewModel::class.java]
 
-        communityViewModel.getUser().observe(this){ user ->
-            if (user.isLogin){
-                fetchPosts()
-            } else{
-                val intent = Intent(requireActivity(), LoginActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                startActivity(intent)
-            }
+        communityViewModel.getUser().observe(this){
+            fetchPosts()
         }
     }
 

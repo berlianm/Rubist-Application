@@ -15,6 +15,7 @@ data class GetPostResponse(
 data class ListPost(
     val id : String,
     val content: String,
+    val createdAt:String,
     val photoUrl: String,
     val postId: String,
     val title: String,
