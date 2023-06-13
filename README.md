@@ -8,7 +8,7 @@ Rubist (Rubbish Sorting Assistant) Application - C23-PS480
 1. Download code from branch "main" OR
 2. Clone Repository. Click on dropdown Code and **copy** this link <br/>
 ```
-git clone [https://github.com/berlianm/Rubist-Application.git](https://github.com/berlianm/Rubist-Application.git)
+git clone https://github.com/berlianm/Rubist-Application.git
 ```
 ### Featured Technologies
 * [Android Studio](https://developer.android.com/studiogclid=CjwKCAjwp6CkBhB_EiwAlQVyxRlqEBd1HaF0B9PVKBPhUST26W_3W5vsPddfzTOr4kraMXGyVNtu0RoCBfEQAvD_BwE&gclsrc=aw.ds) : Android Studio is an integrated development environment (IDE) used to develop Android applications. It is the official software provided by Google for Android-based application development.
