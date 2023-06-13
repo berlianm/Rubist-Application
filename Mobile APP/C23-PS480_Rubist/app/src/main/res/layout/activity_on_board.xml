@@ -13,8 +13,8 @@
         android:id="@+id/logoMenu1"
         android:alpha="0"
         android:layout_width="0dp"
-        android:layout_height="300dp"
-        android:src="@drawable/image_kurikulum_global"
+        android:layout_height="100dp"
+        android:src="@drawable/rubist_logo_onboard2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
@@ -55,7 +55,7 @@
         android:id="@+id/logoMenu2"
         android:layout_width="0dp"
         android:layout_height="300dp"
-        android:src="@drawable/image_belajar_fleksibel"
+        android:src="@drawable/rubist_logo_onboard"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="parent"
@@ -97,11 +97,11 @@
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:background="#ECECEC"
+        android:background="@drawable/back_white_background"
         android:fontFamily="@font/raleway_semibold"
         android:text="@string/start_now"
         android:textAllCaps="false"
-        android:textColor="#2B2B2B"
+        android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -133,13 +133,13 @@
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/image_dicoding" />
+        app:srcCompat="@drawable/rubist_logo_onboard" />
 
 
 </androidx.constraintlayout.motion.widget.MotionLayout>
