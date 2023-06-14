@@ -16,6 +16,8 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Multipart
@@ -50,6 +52,7 @@ interface ApiService {
         @Part photo: MultipartBody.Part,
         @Part("location") location: RequestBody,
         @Part("mobilePhone") mobilePhone: RequestBody,
+        @Part("userId") userId: RequestBody
     ): Call<UpdateProfileResponse>
 
 
@@ -68,6 +71,7 @@ interface ApiService {
 //        @Header("Authorization") authorization: String,
         @Part("title") title: RequestBody,
         @Part("content") content: RequestBody,
+        @Part("userId") userId: RequestBody,
         @Part file: MultipartBody.Part,
     ): Call<AddPostResponse>
 
@@ -86,11 +90,12 @@ interface ApiService {
         @Path("uid") uid: String
     ): Call<DataUserResponse>
 
-    @Multipart
+    @FormUrlEncoded
     @POST("/api/community/comments")
     fun addComment(
-        @Part("postId") postId: String,
-        @Part("content") content: String
+        @Field("postId") postId: String,
+        @Field("content") content: String,
+        @Field("userId") userId: String,
     ) : Call<AddCommentResponse>
 
     @GET("/api/community/posts/{postId}/comments")
