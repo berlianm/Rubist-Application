@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/fragment_container"
     tools:context=".Fragment.AddPost">
 
     <RelativeLayout
@@ -21,7 +22,8 @@
             android:layout_centerInParent="true"
             android:fontFamily="@font/raleway_bold"
             android:text="@string/posting"
-            android:textAllCaps="true"
+            android:textAllCaps="false"
+            android:textColor="#18B255"
             android:textSize="32sp" />
 
         <ImageView
@@ -60,8 +62,9 @@
             android:id="@+id/et_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fontFamily="@font/poppins"
             android:inputType="text"
-            android:textSize="18dp" />
+            android:textSize="16sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,12 +86,14 @@
             android:id="@+id/et_desc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
             android:inputType="textMultiLine"
-            android:textAlignment="textStart"
             android:lines="8"
             android:maxLines="10"
             android:minLines="6"
-            android:scrollbars="vertical" />
+            android:scrollbars="vertical"
+            android:textAlignment="textStart"
+            android:textSize="16sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

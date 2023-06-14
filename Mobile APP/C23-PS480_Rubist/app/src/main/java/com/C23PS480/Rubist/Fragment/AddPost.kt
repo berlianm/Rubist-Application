@@ -17,8 +17,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.C23PS480.Rubist.API.Response.AddPostResponse
 import com.C23PS480.Rubist.API.Retrofit.ApiConfig
+import com.C23PS480.Rubist.R
 import com.C23PS480.Rubist.Utils.createCustomTempFile
 import com.C23PS480.Rubist.Utils.uriToFile
 import com.C23PS480.Rubist.databinding.FragmentAddPostBinding
