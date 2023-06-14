@@ -1,17 +1,20 @@
 package com.C23PS480.Rubist.Adapter
 
 import android.content.Intent
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.C23PS480.Rubist.API.Response.ListPost
 import com.C23PS480.Rubist.DetailPost.DetailPostActivity
 import com.C23PS480.Rubist.R
 import com.bumptech.glide.Glide
+import java.util.TimeZone
 
 class CommunityAdapter (private val posts : List<ListPost>) : RecyclerView.Adapter<CommunityAdapter.ViewHolder>() {
 
@@ -29,6 +32,7 @@ class CommunityAdapter (private val posts : List<ListPost>) : RecyclerView.Adapt
         return ViewHolder(view)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val post = posts[position]
 

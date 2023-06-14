@@ -1,16 +1,17 @@
 package com.C23PS480.Rubist.DetailPost
 
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.C23PS480.Rubist.Adapter.CommentAdapter
 import com.C23PS480.Rubist.Model.UserPreference
-import com.C23PS480.Rubist.R
 import com.C23PS480.Rubist.ViewModel.DetailPostViewModel
 import com.C23PS480.Rubist.databinding.ActivityDetailPostBinding
 import com.bumptech.glide.Glide
@@ -27,6 +28,7 @@ class DetailPostActivity : AppCompatActivity() {
         const val KEY = "EXTRA_POST"
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

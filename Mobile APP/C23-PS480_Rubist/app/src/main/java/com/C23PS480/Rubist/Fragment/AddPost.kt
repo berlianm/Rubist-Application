@@ -201,7 +201,7 @@ class AddPost : Fragment() {
         } else{
             Toast.makeText(
                 requireContext(),
-                "Masukkan Gambar Terlebih Dahulu",
+                "insert image first",
                 Toast.LENGTH_SHORT
             ).show()
         }
