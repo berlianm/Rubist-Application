@@ -92,6 +92,7 @@ class DetailPostActivity : AppCompatActivity() {
 
             Glide.with(this)
                 .load(post.ProfileUrl)
+                .circleCrop()
                 .into(binding.photoUser)
         }
     }

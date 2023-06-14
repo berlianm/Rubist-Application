@@ -35,7 +35,8 @@
             android:layout_height="wrap_content"
             android:text="Done"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="340dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="25dp"
             android:textColor="#0D6EFD"
             android:textSize="15sp"
             android:textStyle="bold"
@@ -51,7 +52,7 @@
             android:id="@+id/user_avatar"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:src="@drawable/avatar"
+            tools:src="@drawable/avatar"
             android:layout_centerHorizontal="true"/>
 
         <ImageView

@@ -38,6 +38,7 @@ class CommunityAdapter (private val posts : List<ListPost>) : RecyclerView.Adapt
         holder.dateTextView.text = post.createdAt
         Glide.with(holder.photoUserView)
             .load(post.ProfileUrl)
+            .circleCrop()
             .into(holder.photoUserView)
         Glide.with(holder.photoImageView)
             .load(post.photoUrl)

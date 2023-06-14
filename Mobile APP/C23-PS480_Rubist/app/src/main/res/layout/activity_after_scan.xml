@@ -40,7 +40,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Belum Puas? \nCoba Scan Ulang dan Dapatkan Hasil yang Lebih Memuaskan!"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:textAlignment="center"
         android:textSize="20dp"
