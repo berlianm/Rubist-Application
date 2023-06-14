@@ -88,6 +88,12 @@ class EditProfileActivity : AppCompatActivity() {
         binding.tvProfileName.text = name
         binding.tvProfileEmail.text = email
 
+        Glide.with(this)
+            .load(photoUrl)
+            .circleCrop()
+            .into(binding.userAvatar)
+
+
     }
 
     private fun startGallery() {

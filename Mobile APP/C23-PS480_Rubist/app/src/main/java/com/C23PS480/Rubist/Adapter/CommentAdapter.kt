@@ -31,6 +31,7 @@ class CommentAdapter (var comments : List<ListComment>) : RecyclerView.Adapter<C
         holder.commentTextView.text = comment.content
         Glide.with(holder.photoUserView)
             .load(comment.photoUrl)
+            .circleCrop()
             .into(holder.photoUserView)
     }
 

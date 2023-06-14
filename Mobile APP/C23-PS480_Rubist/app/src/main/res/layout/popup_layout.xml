@@ -20,12 +20,12 @@
             android:layout_height="wrap_content"
             android:text="Give Your Trash a Shot! \nCapture or Choose from Gallery?"
             android:textAlignment="center"
-            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@color/white"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_popupCamera"
