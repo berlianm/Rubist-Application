@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.C23PS480.Rubist.Adapter.CommentAdapter
 import com.C23PS480.Rubist.Model.UserPreference
 import com.C23PS480.Rubist.R
 import com.C23PS480.Rubist.ViewModel.DetailPostViewModel
@@ -18,6 +21,7 @@ class DetailPostActivity : AppCompatActivity() {
     private lateinit var userPreference: UserPreference
     private lateinit var progressBar: ProgressBar
     private lateinit var detailPostViewModel: DetailPostViewModel
+    private lateinit var commentAdapter: CommentAdapter
 
     companion object {
         const val KEY = "EXTRA_POST"
@@ -37,13 +41,33 @@ class DetailPostActivity : AppCompatActivity() {
 
         post?.let{
             setupDetailPost()
+
         }
+        commentAdapter = CommentAdapter(emptyList())
+        binding.recyclerView.adapter = commentAdapter
+
+        val layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.layoutManager = layoutManager
 
         observePost()
         observeLoading()
+        observeComments()
 
         binding.btnBack.setOnClickListener{
             onBackPressed()
+        }
+
+        binding.btnSubmit.setOnClickListener {
+            val comment = binding.commentForm.text.toString().trim()
+            if (comment.isNotEmpty()) {
+                val postId = intent.getStringExtra(KEY)
+                if (postId != null) {
+                    detailPostViewModel.addComment(postId, comment)
+                    binding.commentForm.text.clear()
+                }
+            } else {
+                Toast.makeText(this, "Please enter a comment", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -52,6 +76,7 @@ class DetailPostActivity : AppCompatActivity() {
         Log.d("KEY", postId.toString())
         if(postId != null){
             detailPostViewModel.getPost(postId)
+            detailPostViewModel.getComments(postId)
         }
     }
 
@@ -66,7 +91,7 @@ class DetailPostActivity : AppCompatActivity() {
                 .into(binding.tvPhoto)
 
             Glide.with(this)
-                .load(post.photoURL)
+                .load(post.ProfileUrl)
                 .into(binding.photoUser)
         }
     }
@@ -80,4 +105,13 @@ class DetailPostActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun observeComments() {
+        detailPostViewModel.comments.observe(this) { comments ->
+            commentAdapter.comments = comments
+            commentAdapter.notifyDataSetChanged()
+        }
+    }
+
+
 }

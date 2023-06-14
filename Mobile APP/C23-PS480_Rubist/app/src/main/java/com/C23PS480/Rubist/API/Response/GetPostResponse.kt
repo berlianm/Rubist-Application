@@ -21,5 +21,5 @@ data class ListPost(
     val title: String,
     val userId: String,
     val displayName: String,
-    val photoURL:String
+    val ProfileUrl:String
 ) : Parcelable

@@ -93,12 +93,14 @@
                 android:id="@+id/tv_jenisSampah"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
                 android:text="Jenis Sampah"
-                android:textSize="25dp"
+                android:textColor="@color/black"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3"/>
+                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
             <TextView
                 android:id="@+id/tv_desc"
@@ -106,9 +108,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins"
                 android:justificationMode="inter_word"
                 android:text="Deskripsi"
-                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_jenisSampah" />
 
@@ -123,16 +127,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Daur Ulang : "
-                    android:textSize="15dp"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_DaurUlang"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
                     android:text="ya/tidak"
-                    android:textSize="15dp" />
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -147,17 +155,21 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Dampak Lingkungan : "
-                    android:textSize="15dp"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_DampakLingkungan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
                     android:justificationMode="inter_word"
                     android:text="desc"
-                    android:textSize="15dp" />
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -172,17 +184,21 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Pembuangan : "
-                    android:textSize="15dp"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_Pembuangan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
                     android:justificationMode="inter_word"
                     android:text="desc"
-                    android:textSize="15dp" />
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -197,17 +213,21 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
                     android:text="Cara Daur Ulang : "
-                    android:textSize="15dp"
+                    android:textColor="@android:color/holo_green_dark"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tv_CaraDaurUlang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
                     android:justificationMode="inter_word"
                     android:text="desc"
-                    android:textSize="15dp" />
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

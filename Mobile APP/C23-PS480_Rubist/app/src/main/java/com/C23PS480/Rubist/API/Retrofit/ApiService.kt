@@ -1,8 +1,10 @@
 package com.C23PS480.Rubist.API.Retrofit
 
 import com.C23PS480.Rubist.API.Request.UserRequest
+import com.C23PS480.Rubist.API.Response.AddCommentResponse
 import com.C23PS480.Rubist.API.Response.AddPostResponse
 import com.C23PS480.Rubist.API.Response.ChangePassResponse
+import com.C23PS480.Rubist.API.Response.CommentPostResponse
 import com.C23PS480.Rubist.API.Response.DataUserResponse
 import com.C23PS480.Rubist.API.Response.DetailPostResponse
 import com.C23PS480.Rubist.API.Response.FileUploadResponse
@@ -15,7 +17,6 @@ import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.POST
@@ -84,5 +85,17 @@ interface ApiService {
     fun getDatalUser(
         @Path("uid") uid: String
     ): Call<DataUserResponse>
+
+    @Multipart
+    @POST("/api/community/comments")
+    fun addComment(
+        @Part("postId") postId: String,
+        @Part("content") content: String
+    ) : Call<AddCommentResponse>
+
+    @GET("/api/community/posts/{postId}/comments")
+    fun getCommentbyId(
+        @Path("postId") postId: String
+    ) : Call<CommentPostResponse>
 
 }
