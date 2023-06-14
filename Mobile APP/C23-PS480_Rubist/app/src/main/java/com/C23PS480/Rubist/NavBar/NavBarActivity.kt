@@ -36,6 +36,7 @@ class NavBarActivity : AppCompatActivity() {
     private lateinit var mainViewModel: MainViewModel
 
     private var uid : String? = null
+    private var name : String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +51,7 @@ class NavBarActivity : AppCompatActivity() {
 
         mainViewModel.getUser().observe(this) { user ->
             uid = user.uid
+            name = user.name
             getDataUser()
         }
 
@@ -82,17 +84,28 @@ class NavBarActivity : AppCompatActivity() {
                     binding.apply {
                         binding.tvUsername.text = responseBody?.name
                         val profilePhoto= responseBody?.photoUrl
-                        Glide.with(this@NavBarActivity)
-                            .load(profilePhoto)
-                            .apply(RequestOptions().placeholder(R.drawable.avatar))
-                            .circleCrop()
-                            .into(userAvatar)
+                        if (profilePhoto != null){
+                            Glide.with(this@NavBarActivity)
+                                .load(profilePhoto)
+                                .apply(RequestOptions().placeholder(R.drawable.avatar))
+                                .circleCrop()
+                                .into(userAvatar)
+                        }
                         Log.d("Avatar", "Profile Photo: $profilePhoto")
                     }
 
                 }else{
+                    binding.apply {
+                        tvUsername.text = name
 
-                    Toast.makeText(this@NavBarActivity, "gagal", Toast.LENGTH_SHORT).show()
+                        Glide.with(this@NavBarActivity)
+                            .load(R.drawable.avatar)
+                            .apply(RequestOptions().placeholder(R.drawable.avatar))
+                            .circleCrop()
+                            .into(userAvatar)
+                    }
+                    Toast.makeText(this@NavBarActivity, "Get data failed", Toast.LENGTH_SHORT).show()
+
                 }
 
             }
