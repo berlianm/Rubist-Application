@@ -66,172 +66,180 @@
         android:layout_marginTop="440dp"
         android:src="@drawable/ic_galery" />
 
+
+
     <FrameLayout
         android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="900dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
         android:background="@drawable/bottom_sheet">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="100dp"
-                android:layout_height="20dp"
-                android:scaleType="centerCrop"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/ic_bottom_sheet"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_jenisSampah"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Jenis Sampah"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-            <TextView
-                android:id="@+id/tv_desc"
-                android:layout_width="360dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/poppins"
-                android:justificationMode="inter_word"
-                android:text="Deskripsi"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_jenisSampah" />
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/layoutDaurUlang"
-                android:layout_width="360dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="@+id/layoutPembuangan"
-                app:layout_constraintTop_toBottomOf="@+id/layoutPembuangan">
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="100dp"
+                    android:layout_height="20dp"
+                    android:scaleType="centerCrop"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_bottom_sheet"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/tv_jenisSampah"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="Daur Ulang : "
-                    android:textColor="@android:color/holo_green_dark"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_DaurUlang"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:text="ya/tidak"
+                    android:fontFamily="@font/poppins_bold"
+                    android:text="Jenis Sampah"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/layoutDampak"
-                android:layout_width="360dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="@+id/tv_desc"
-                app:layout_constraintTop_toBottomOf="@+id/tv_desc">
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tv_desc"
+                    android:layout_width="360dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="Dampak Lingkungan : "
-                    android:textColor="@android:color/holo_red_dark"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_DampakLingkungan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="@font/poppins"
                     android:justificationMode="inter_word"
-                    android:text="desc"
+                    android:text="Deskripsi"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/layoutPembuangan"
-                android:layout_width="360dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="@+id/layoutDampak"
-                app:layout_constraintTop_toBottomOf="@+id/layoutDampak">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="Pembuangan : "
-                    android:textColor="@android:color/holo_red_dark"
                     android:textSize="15sp"
-                    android:textStyle="bold" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_jenisSampah" />
 
-                <TextView
-                    android:id="@+id/tv_Pembuangan"
-                    android:layout_width="wrap_content"
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/layoutDaurUlang"
+                    android:layout_width="360dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:justificationMode="inter_word"
-                    android:text="desc"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="@+id/layoutPembuangan"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutPembuangan">
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Daur Ulang : "
+                        android:textColor="@android:color/holo_green_dark"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/layoutCaraDaur"
-                android:layout_width="360dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintStart_toStartOf="@+id/layoutDaurUlang"
-                app:layout_constraintTop_toBottomOf="@+id/layoutDaurUlang">
+                    <TextView
+                        android:id="@+id/tv_DaurUlang"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:text="ya/tidak"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/layoutDampak"
+                    android:layout_width="360dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="Cara Daur Ulang : "
-                    android:textColor="@android:color/holo_green_dark"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="@+id/tv_desc"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_desc">
 
-                <TextView
-                    android:id="@+id/tv_CaraDaurUlang"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Dampak Lingkungan : "
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_DampakLingkungan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:justificationMode="inter_word"
+                        android:text="desc"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/layoutPembuangan"
+                    android:layout_width="360dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:justificationMode="inter_word"
-                    android:text="desc"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="@+id/layoutDampak"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutDampak">
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Pembuangan : "
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/tv_Pembuangan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:justificationMode="inter_word"
+                        android:text="desc"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/layoutCaraDaur"
+                    android:layout_width="360dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintStart_toStartOf="@+id/layoutDaurUlang"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutDaurUlang">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Cara Daur Ulang : "
+                        android:textColor="@android:color/holo_green_dark"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_CaraDaurUlang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:justificationMode="inter_word"
+                        android:text="desc"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
 
 
 
