@@ -90,14 +90,22 @@ class Profile : Fragment(), View.OnClickListener {
                         tvProfileLocation.text = responseBody?.location
                         val profilePhoto= responseBody?.photoUrl
                         if (profilePhoto != null){
+                            getContext()?.let {
+                                Glide.with(it)
+                                    .load(profilePhoto)
+                                    .apply(RequestOptions().placeholder(R.drawable.avatar))
+                                    .circleCrop()
+                                    .into(userAvatar)
+                            }
+                            Log.d("Avatar", "Profile Photo: $profilePhoto")
+                        }else{
                             Glide.with(requireContext())
-                                .load(profilePhoto)
+                                .load(R.drawable.avatar)
                                 .apply(RequestOptions().placeholder(R.drawable.avatar))
                                 .circleCrop()
                                 .into(userAvatar)
                         }
 
-                        Log.d("Avatar", "Profile Photo: $profilePhoto")
                     }
 
                 }else{

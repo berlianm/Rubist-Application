@@ -12,6 +12,9 @@ import com.C23PS480.Rubist.API.Response.DetailPostResponse
 import com.C23PS480.Rubist.API.Response.ListComment
 import com.C23PS480.Rubist.API.Response.ListPost
 import com.C23PS480.Rubist.API.Retrofit.ApiConfig
+import com.C23PS480.Rubist.Fragment.AddPost
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -86,11 +89,11 @@ class DetailPostViewModel: ViewModel() {
         })
     }
 
-    fun addComment(postId: String, comment: String){
+    fun addComment(postId: String, content: String, userId: String){
         Log.d("postId", postId)
-        Log.d("comment", comment)
+        Log.d("comment", content)
         val apiService = ApiConfig.getApiService()
-        val call = apiService.addComment(postId, comment)
+        val call = apiService.addComment(postId, content , userId)
 
         call.enqueue(object : Callback<AddCommentResponse>{
             override fun onResponse(
@@ -101,6 +104,7 @@ class DetailPostViewModel: ViewModel() {
                     val commentResponse = response.body()
                     if (commentResponse !=null){
                         Log.d(TAG, "Comment Success")
+
                     } else{
                     }
                 } else{
