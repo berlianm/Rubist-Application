@@ -81,7 +81,8 @@
             android:layout_height="wrap_content">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
 
                 <ImageView
                     android:id="@+id/imageView3"
@@ -109,33 +110,37 @@
 
                 <TextView
                     android:id="@+id/tv_desc"
-                    android:layout_width="360dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="16dp"
                     android:fontFamily="@font/poppins"
                     android:justificationMode="inter_word"
                     android:text="Deskripsi"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_jenisSampah" />
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/layoutDaurUlang"
-                    android:layout_width="360dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="12dp"
                     app:layout_constraintStart_toStartOf="@+id/layoutPembuangan"
                     app:layout_constraintTop_toBottomOf="@+id/layoutPembuangan">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Daur Ulang : "
                         android:textColor="@android:color/holo_green_dark"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -145,54 +150,61 @@
                         android:fontFamily="@font/poppins"
                         android:text="ya/tidak"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/layoutDampak"
-                    android:layout_width="360dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="14dp"
+                    android:orientation="vertical"
                     app:layout_constraintStart_toStartOf="@+id/tv_desc"
                     app:layout_constraintTop_toBottomOf="@+id/tv_desc">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Dampak Lingkungan : "
                         android:textColor="@android:color/holo_red_dark"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tv_DampakLingkungan"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:fontFamily="@font/poppins"
                         android:justificationMode="inter_word"
                         android:text="desc"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/layoutPembuangan"
-                    android:layout_width="360dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="12dp"
                     app:layout_constraintStart_toStartOf="@+id/layoutDampak"
                     app:layout_constraintTop_toBottomOf="@+id/layoutDampak">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
                         android:text="Pembuangan : "
                         android:textColor="@android:color/holo_red_dark"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -203,15 +215,18 @@
                         android:justificationMode="inter_word"
                         android:text="desc"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/layoutCaraDaur"
-                    android:layout_width="360dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="12dp"
                     app:layout_constraintStart_toStartOf="@+id/layoutDaurUlang"
                     app:layout_constraintTop_toBottomOf="@+id/layoutDaurUlang">
 
@@ -221,7 +236,7 @@
                         android:fontFamily="@font/poppins_medium"
                         android:text="Cara Daur Ulang : "
                         android:textColor="@android:color/holo_green_dark"
-                        android:textSize="15sp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -232,7 +247,7 @@
                         android:justificationMode="inter_word"
                         android:text="desc"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="14sp" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
