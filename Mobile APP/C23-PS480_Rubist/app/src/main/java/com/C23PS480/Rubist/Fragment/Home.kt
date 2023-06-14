@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
 import com.C23PS480.Rubist.NavBar.NavBarActivity
 import com.C23PS480.Rubist.R
@@ -24,6 +25,14 @@ class Home : Fragment() {
             startActivity(intent)
 
         }
+        val community: Button = view.findViewById(R.id.button)
+        community.setOnClickListener{
+            val newFragment = Community()
+            val transaction = parentFragmentManager.beginTransaction()
+            transaction.replace(R.id.frame_layout, newFragment)
+            transaction.commit()
+        }
+
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

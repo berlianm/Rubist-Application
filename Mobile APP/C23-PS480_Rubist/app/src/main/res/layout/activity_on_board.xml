@@ -142,4 +142,5 @@
         app:srcCompat="@drawable/rubist_logo_onboard" />
 
 
+
 </androidx.constraintlayout.motion.widget.MotionLayout>

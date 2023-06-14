@@ -28,6 +28,7 @@ class DetailPostViewModel: ViewModel() {
     val comments: LiveData<List<ListComment>> = _comments
 
     fun getPost(postId:String){
+        Log.d("KEY", "postId : $postId")
         _isLoading.value = true
 
         val apiService = ApiConfig.getApiService()

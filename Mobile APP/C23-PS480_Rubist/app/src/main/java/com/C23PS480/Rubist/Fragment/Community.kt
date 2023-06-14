@@ -60,6 +60,14 @@ class Community : Fragment() {
         communityViewModel.getUser().observe(this){
             fetchPosts()
         }
+
+//        val BtnAdd : TextView = view.findViewById(R.id.tv_addPost)!!
+//        BtnAdd.setOnClickListener{
+//            val newFragment = AddPost()
+//            val transaction = parentFragmentManager.beginTransaction()
+//            transaction.replace(R.id.frame_layout, newFragment)
+//            transaction.commit()
+//        }
     }
 
 
