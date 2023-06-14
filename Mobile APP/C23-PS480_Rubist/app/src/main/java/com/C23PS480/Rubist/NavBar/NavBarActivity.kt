@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.C23PS480.Rubist.API.Response.DataUserResponse
 import com.C23PS480.Rubist.API.Retrofit.ApiConfig
 import com.C23PS480.Rubist.EditProfile.EditProfileActivity
+import com.C23PS480.Rubist.Fragment.Community
 import com.C23PS480.Rubist.Fragment.Profile
 import com.C23PS480.Rubist.MainViewModel
 import com.C23PS480.Rubist.Model.UserPreference
@@ -62,7 +63,10 @@ class NavBarActivity : AppCompatActivity() {
         }
 
         binding.profileMenu.setOnClickListener{
-            finish()
+            val newFragment = Profile()
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.frame_layout, newFragment)
+            transaction.commit()
         }
     }
     private fun getDataUser(){

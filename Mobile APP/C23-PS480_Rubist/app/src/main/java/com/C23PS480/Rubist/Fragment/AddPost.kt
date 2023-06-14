@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
@@ -63,7 +64,7 @@ class AddPost : Fragment() {
 
         binding.ivCamera.setOnClickListener{ startTakePhoto() }
         binding.tvGelery.setOnClickListener { startGallery() }
-        binding.tvUpload.setOnClickListener { uploadImage() }
+        binding.tvUpload.setOnClickListener { UploadDialog() }
     }
 
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
@@ -132,6 +133,26 @@ class AddPost : Fragment() {
                 binding.previewImage.setImageURI(uri)
             }
         }
+    }
+
+    private fun UploadDialog() {
+        val dialogMessage = getString(R.string.Posting)
+        val dialogTitle = getString(R.string.AddPost)
+
+
+        val alertDialogBuilder = AlertDialog.Builder(requireActivity())
+        alertDialogBuilder.setTitle(dialogTitle)
+
+        alertDialogBuilder
+            .setMessage(dialogMessage)
+            .setCancelable(false)
+            .setPositiveButton(getString(R.string.yes)) { _, _ ->
+                uploadImage()
+
+            }
+            .setNegativeButton(getString(R.string.No)) { dialog, _ -> dialog.cancel() }
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
     }
 
     private fun uploadImage(){

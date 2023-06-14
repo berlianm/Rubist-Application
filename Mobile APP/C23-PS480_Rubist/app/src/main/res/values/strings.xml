@@ -43,5 +43,7 @@
     <string name="post_title">Post Title</string>
     <string name="comments">Comments</string>
     <string name="comment">Comment...</string>
+    <string name="Posting">Are you sure you want to post this?</string>
+    <string name="AddPost">Add Post</string>
 
 </resources>

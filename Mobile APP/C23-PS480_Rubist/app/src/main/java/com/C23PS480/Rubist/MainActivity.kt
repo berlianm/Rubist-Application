@@ -37,6 +37,7 @@ import com.C23PS480.Rubist.Fragment.Profile
 import com.C23PS480.Rubist.Login.LoginActivity
 import com.C23PS480.Rubist.Model.UserPreference
 import com.C23PS480.Rubist.OnBoard.OnBoardActivity
+import com.C23PS480.Rubist.Splash.SplashScreenActivity
 import com.C23PS480.Rubist.Utils.createCustomTempFile
 import com.C23PS480.Rubist.Utils.reduceFileImage
 import com.C23PS480.Rubist.Utils.uriToFile
@@ -108,7 +109,8 @@ class MainActivity : AppCompatActivity() {
             editor.putBoolean("isFirstInstall", false)
             editor.apply()
         } else {
-           setupViewModel()
+            setupViewModel()
+
         }
     }
 
