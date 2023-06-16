@@ -65,6 +65,13 @@ Total: `2737` Data
 
 <br /><br />
 
+# 2. Cloud Computing
+
+## Our Architecture Cloud Design
+<img src="https://github.com/berlianm/Rubist-Application/blob/main/architecture%20cloud%20design.png" alt="cc" style="display: inline-block; margin: 0 auto; max-width: 500px">
+<br />
+
+<br /><br />
 
 # 3. Android Development
 ### Clone Repository
