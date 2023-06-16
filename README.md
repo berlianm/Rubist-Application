@@ -37,7 +37,7 @@ You can see more details for Machine Learning at [MODEL](https://github.com/berl
 
 ## MobileNet V2
 ### MobileNetV2 is a Convolutional Neural Network (CNN) architecture specifically designed for image processing on mobile devices or Internet of Things (IoT) devices. It combines several techniques to achieve good performance in image processing tasks. This architecture provides a balance between computational speed and image recognition quality, making it suitable for applications that require real-time image processing on devices with limited resources.
-<img src="https://github.com/berlianm/Rubist-Application/blob/main/Model%20Classification/cnn.jpeg" alt="mbnetv2" style="display: inline-block; margin: 0 auto; max-width: 500px">
+<img src="https://github.com/berlianm/Rubist-Application/blob/main/Model%20Classification/MobileNet%20V2/mobilenetv2.png" alt="mbnetv2" style="display: inline-block; margin: 0 auto; max-width: 500px">
 
 ### Tasks for the Machine Learning Team
 1. Literature Reviews
@@ -48,12 +48,12 @@ You can see more details for Machine Learning at [MODEL](https://github.com/berl
 6. Evaluation Performance
 
 DATASET:
-- Data Cardboard: 403
-- Data Glass    : 501
-- Data Metal    : 410
-- Data Paper    : 594
-- Data Plastic  : 482
-- Data Trash    : 347
+- Data Cardboard: `403`
+- Data Glass    : `501`
+- Data Metal    : `410`
+- Data Paper    : `594`
+- Data Plastic  : `482`
+- Data Trash    : `347`
 
 Total: `2737` Data
 
@@ -61,7 +61,7 @@ Total: `2737` Data
 #### Here The Result (ACCURACY & LOSS)
 <img src="https://github.com/berlianm/Rubist-Application/blob/main/Model%20Classification/MobileNet%20V2/accuracy.png" alt="Logo" style="display: inline-block; margin: 0 auto; max-width: 500px">
 <img src="https://github.com/berlianm/Rubist-Application/blob/main/Model%20Classification/MobileNet%20V2/accuracy.png" alt="Logo" style="display: inline-block; margin: 0 auto; max-width: 500px">
-<br /><br />
+<br />
 
 ### Prediction in the Application
 
