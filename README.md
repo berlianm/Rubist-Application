@@ -3,6 +3,18 @@ Rubist (Rubbish Sorting Assistant) Application - C23-PS480
 
 <img src="https://github.com/berlianm/Rubist-Application/blob/main/logo/logo_green.png" alt="Logo" style="display: inline-block; margin: 0 auto; max-width: 100px">
 
+<br />
+
+### 🙋🏻‍♂️ Team Member
+
+- (ML) M360DKX4331 – Berlian Muhammad Galin Al Awienoor
+- (ML) M360DKX4329 – Fakhrul Maulidan Gustiana
+- (CC) C151DSY1649 – Putri Ainul Khikmah
+- (CC) C281DSX3151 – Andi Reski
+- (MD) A313DKX4555 – Gutri Rahmad Zuwa
+- (MD) A360DKX4348 – Kiki Dwi Prasetyo
+<br />
+
 ### Theme: Sustainable Living
 
 ### Abstract:
@@ -18,17 +30,6 @@ _Rubist is an app designed to help users detect types of waste and provide impor
 ### Dataset: 
 - [Garbage Classification](https://drive.google.com/drive/folders/1aDMo-ZzUSCMDFDD16CPP3Lofb64It41J?usp=sharing) or
 - https://github.com/berlianm/Rubist-Application
-
-<br />
-
-### 🙋🏻‍♂️ Team Member
-
-- (ML) M360DKX4331 – Berlian Muhammad Galin Al Awienoor
-- (ML) M360DKX4329 – Fakhrul Maulidan Gustiana
-- (CC) C151DSY1649 – Putri Ainul Khikmah
-- (CC) C281DSX3151 – Andi Reski
-- (MD) A313DKX4555 – Gutri Rahmad Zuwa
-- (MD) A360DKX4348 – Kiki Dwi Prasetyo
 
 <br />
 
