@@ -40,7 +40,7 @@ CNN is a type of neural network architecture specifically for visual data proces
 <img src="https://github.com/berlianm/Rubist-Application/blob/main/Model%20Classification/cnn.jpeg" alt="cnn" style="display: inline-block; margin: 0 auto; max-width: 500px">
 
 ## MobileNet V2
-MobileNetV2 is a Convolutional Neural Network (CNN) architecture specifically designed for image processing on mobile devices or Internet of Things (IoT) devices. It combines several techniques to achieve good performance in image processing tasks. This architecture provides a balance between computational speed and image recognition quality, making it suitable for applications that require real-time image processing on devices with limited resources.
+MobileNetV2 is a Convolutional Neural Network (CNN) architecture specifically designed for image processing on mobile devices or Internet of Things (IoT) devices. It combines several techniques to achieve good performance in image processing tasks. This architecture provides a balance between computational speed and image recognition quality, making it suitable for applications that require real-time image processing on devices with limited resources. <br />
 <img src="https://github.com/berlianm/Rubist-Application/blob/main/Model%20Classification/MobileNet%20V2/mobilenetv2.png" alt="mbnetv2" style="display: inline-block; margin: 0 auto; max-width: 500px">
 
 ### Tasks for the Machine Learning Team
