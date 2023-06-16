@@ -1,8 +1,10 @@
 package com.C23PS480.Rubist.API.Retrofit
 
 import com.C23PS480.Rubist.API.Request.UserRequest
+import com.C23PS480.Rubist.API.Response.AddCommentResponse
 import com.C23PS480.Rubist.API.Response.AddPostResponse
 import com.C23PS480.Rubist.API.Response.ChangePassResponse
+import com.C23PS480.Rubist.API.Response.CommentPostResponse
 import com.C23PS480.Rubist.API.Response.DataUserResponse
 import com.C23PS480.Rubist.API.Response.DetailPostResponse
 import com.C23PS480.Rubist.API.Response.FileUploadResponse
@@ -14,8 +16,9 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.POST
@@ -49,6 +52,7 @@ interface ApiService {
         @Part photo: MultipartBody.Part,
         @Part("location") location: RequestBody,
         @Part("mobilePhone") mobilePhone: RequestBody,
+        @Part("userId") userId: RequestBody
     ): Call<UpdateProfileResponse>
 
 
@@ -67,6 +71,7 @@ interface ApiService {
 //        @Header("Authorization") authorization: String,
         @Part("title") title: RequestBody,
         @Part("content") content: RequestBody,
+        @Part("userId") userId: RequestBody,
         @Part file: MultipartBody.Part,
     ): Call<AddPostResponse>
 
@@ -84,5 +89,18 @@ interface ApiService {
     fun getDatalUser(
         @Path("uid") uid: String
     ): Call<DataUserResponse>
+
+    @FormUrlEncoded
+    @POST("/api/community/comments")
+    fun addComment(
+        @Field("postId") postId: String,
+        @Field("content") content: String,
+        @Field("userId") userId: String,
+    ) : Call<AddCommentResponse>
+
+    @GET("/api/community/posts/{postId}/comments")
+    fun getCommentbyId(
+        @Path("postId") postId: String
+    ) : Call<CommentPostResponse>
 
 }

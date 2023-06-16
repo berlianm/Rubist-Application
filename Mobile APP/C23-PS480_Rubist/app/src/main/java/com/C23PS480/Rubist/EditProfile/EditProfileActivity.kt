@@ -88,6 +88,12 @@ class EditProfileActivity : AppCompatActivity() {
         binding.tvProfileName.text = name
         binding.tvProfileEmail.text = email
 
+        Glide.with(this)
+            .load(photoUrl)
+            .circleCrop()
+            .into(binding.userAvatar)
+
+
     }
 
     private fun startGallery() {
@@ -137,6 +143,7 @@ class EditProfileActivity : AppCompatActivity() {
 
             val location = binding.etProfileLocation.text.toString().toRequestBody("text/plain".toMediaTypeOrNull())
             val mobileNumber = binding.etProfileNumber.text.toString().toRequestBody("text/plain".toMediaTypeOrNull())
+            val userId = uid?.toRequestBody("text/plain".toMediaTypeOrNull())
             val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
             val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
                 "photo",
@@ -146,7 +153,7 @@ class EditProfileActivity : AppCompatActivity() {
 
 
             val apiService = ApiConfig.getApiService()
-            val uploadImageRequest = apiService.updateProfile( imageMultipart, location, mobileNumber)
+            val uploadImageRequest = apiService.updateProfile( imageMultipart, location, mobileNumber, userId!!)
             uploadImageRequest.enqueue(object : Callback<UpdateProfileResponse> {
                 override fun onResponse(
                     call: Call<UpdateProfileResponse>,

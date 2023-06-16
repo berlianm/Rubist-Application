@@ -37,6 +37,8 @@ class Profile : Fragment(), View.OnClickListener {
     private val binding get() = _binding!!;
 
     private var uid : String? = null
+    private var name : String? = null
+    private var email : String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,9 +49,11 @@ class Profile : Fragment(), View.OnClickListener {
 
         mainViewModel.getUser().observe(requireActivity()) { user ->
             uid = user.uid
+            name = user.name
+            email = user.email
+            getDataUser()
         }
 
-        getDataUser()
         val btnEdit : Button = view.findViewById(R.id.btn_EditProfile)
         btnEdit.setOnClickListener(this)
 
@@ -85,19 +89,42 @@ class Profile : Fragment(), View.OnClickListener {
                         tvProfileNumber.text = responseBody?.mobilePhone
                         tvProfileLocation.text = responseBody?.location
                         val profilePhoto= responseBody?.photoUrl
+                        if (profilePhoto != null){
+                            getContext()?.let {
+                                Glide.with(it)
+                                    .load(profilePhoto)
+                                    .apply(RequestOptions().placeholder(R.drawable.avatar))
+                                    .circleCrop()
+                                    .into(userAvatar)
+                            }
+                            Log.d("Avatar", "Profile Photo: $profilePhoto")
+                        }else{
+                            Glide.with(requireContext())
+                                .load(R.drawable.avatar)
+                                .apply(RequestOptions().placeholder(R.drawable.avatar))
+                                .circleCrop()
+                                .into(userAvatar)
+                        }
 
-
-                        Glide.with(requireContext())
-                            .load(profilePhoto)
-                            .apply(RequestOptions().placeholder(R.drawable.avatar))
-                            .circleCrop()
-                            .into(userAvatar)
-                        Log.d("Avatar", "Profile Photo: $profilePhoto")
                     }
 
                 }else{
                     setLoading(false)
-                    Toast.makeText(requireContext(), "gagal", Toast.LENGTH_SHORT).show()
+                    binding.apply {
+                        EditProfileActivity.uid = uid
+                        EditProfileActivity.name = name
+                        EditProfileActivity.email = email
+
+                        tvProfileEmail.text = email
+                        tvProfileName.text = name
+
+                        Glide.with(requireContext())
+                            .load(R.drawable.avatar)
+                            .apply(RequestOptions().placeholder(R.drawable.avatar))
+                            .circleCrop()
+                            .into(userAvatar)
+                    }
+                    Toast.makeText(requireContext(), "Get data failed", Toast.LENGTH_SHORT).show()
                 }
 
             }
