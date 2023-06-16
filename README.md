@@ -1,7 +1,7 @@
 # Rubist-Application
 Rubist (Rubbish Sorting Assistant) Application - C23-PS480
 
-<img src="https://github.com/berlianm/Rubist-Application/blob/main/logo/LOGO1.png" alt="Logo" style="display: inline-block; margin: 0 auto; max-width: 250px">
+<img src="https://github.com/berlianm/Rubist-Application/blob/main/logo/LOGO1.png" alt="Logo" style="display: inline-block; margin: 0 auto; max-width: 50px">
 
 ### Theme: SUSTAINABLE LIVING
 
