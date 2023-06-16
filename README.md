@@ -8,8 +8,6 @@ Rubist (Rubbish Sorting Assistant) Application - C23-PS480
 ### Abstract:
 #### Rubbish Sorting Assistant is a mobile application designed to address the problem of improper rubbish management in Indonesia. With a lack of awareness of proper rubbish management, many people contribute to the growing rubbish problem. Through the use of machine learning algorithms, Rubbish Sorting Assistant aims to provide a solution by assisting users in identifying the type of rubbish and providing instructions on how to properly dispose or recycle it. The goal of the project is to promote better rubbish management solutions and create a cleaner and healthier environment. By helping people manage rubbish properly, we hope to reduce the rubbish problem in Indonesia and contribute to a cleaner and healthier future.
 
-### Problem Statement:
-#### Rubbish Sorting Assistant (Rubist) is a mobile application designed to address the problem of improper rubbish management in Indonesia. With a lack of awareness of proper rubbish management, many people contribute to the growing rubbish problem. Through the use of machine learning algorithms, Rubbish Sorting Assistant (Rubist) aims to provide a solution by assisting users in identifying the type of rubbish and providing instructions on how to properly dispose or recycle it. The goal of the project is to promote better rubbish management solutions and create a cleaner and healthier environment. By helping people manage rubbish properly, we hope to reduce the rubbish problem in Indonesia and contribute to a cleaner and healthier future.
 
 ### Dataset: 
 - [Garbage Classification](https://drive.google.com/drive/folders/1aDMo-ZzUSCMDFDD16CPP3Lofb64It41J?usp=sharing) or
@@ -19,12 +17,12 @@ Rubist (Rubbish Sorting Assistant) Application - C23-PS480
 
 ### 🙋🏻‍♂️ Team Member
 
-(ML) M360DKX4331 – Berlian Muhammad Galin Al Awienoor
-(ML) M360DKX4329 – Fakhrul Maulidan Gustiana
-(CC) C151DSY1649 – Putri Ainul Khikmah
-(CC) C281DSX3151 – Andi Reski
-(MD) A313DKX4555 – Gutri Rahmad Zuwa
-(MD) A360DKX4348 – Kiki Dwi Prasetyo
+- (ML) M360DKX4331 – Berlian Muhammad Galin Al Awienoor
+- (ML) M360DKX4329 – Fakhrul Maulidan Gustiana
+- (CC) C151DSY1649 – Putri Ainul Khikmah
+- (CC) C281DSX3151 – Andi Reski
+- (MD) A313DKX4555 – Gutri Rahmad Zuwa
+- (MD) A360DKX4348 – Kiki Dwi Prasetyo
 
 <br />
 
