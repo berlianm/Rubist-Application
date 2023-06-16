@@ -67,7 +67,7 @@ Total: `2737` Data
 <img src="https://github.com/berlianm/Rubist-Application/blob/main/Model%20Classification/MobileNet%20V2/loss.png" alt="loss" style="display: inline-block; margin: 0 auto; max-width: 500px">
 <br />
 
-### Prediction in the Application
+
 
 <br /><br />
 
