@@ -57,8 +57,8 @@ Total: `2737` Data
 
 ### The Best Model is using MobileNet V2
 #### Here The Result (ACCURACY & LOSS)
-<img src="https://github.com/berlianm/Rubist-Application/blob/main/Model%20Classification/MobileNet%20V2/accuracy.png" alt="Logo" style="display: inline-block; margin: 0 auto; max-width: 500px">
-<img src="https://github.com/berlianm/Rubist-Application/blob/main/Model%20Classification/MobileNet%20V2/accuracy.png" alt="Logo" style="display: inline-block; margin: 0 auto; max-width: 500px">
+<img src="https://github.com/berlianm/Rubist-Application/blob/main/Model%20Classification/MobileNet%20V2/accuracy.png" alt="accu" style="display: inline-block; margin: 0 auto; max-width: 500px">
+<img src="https://github.com/berlianm/Rubist-Application/blob/main/Model%20Classification/MobileNet%20V2/loss.png" alt="loss" style="display: inline-block; margin: 0 auto; max-width: 500px">
 <br />
 
 ### Prediction in the Application
