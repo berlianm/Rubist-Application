@@ -1,13 +1,19 @@
 # Rubist-Application
 Rubist (Rubbish Sorting Assistant) Application - C23-PS480
 
-<img src="https://github.com/berlianm/Rubist-Application/blob/main/logo/LOGO1.png" alt="Logo" style="display: inline-block; margin: 0 auto; max-width: 50px">
+<img src="https://github.com/berlianm/Rubist-Application/blob/main/logo/LOGO1.png" alt="Logo" style="display: inline-block; margin: 0 auto; max-width: 30px">
 
-### Theme: SUSTAINABLE LIVING
+### Theme: Sustainable Living
 
 ### Abstract:
-#### Rubbish Sorting Assistant is a mobile application designed to address the problem of improper rubbish management in Indonesia. With a lack of awareness of proper rubbish management, many people contribute to the growing rubbish problem. Through the use of machine learning algorithms, Rubbish Sorting Assistant aims to provide a solution by assisting users in identifying the type of rubbish and providing instructions on how to properly dispose or recycle it. The goal of the project is to promote better rubbish management solutions and create a cleaner and healthier environment. By helping people manage rubbish properly, we hope to reduce the rubbish problem in Indonesia and contribute to a cleaner and healthier future.
+Rubbish Sorting Assistant is a mobile application designed to address the problem of improper rubbish management in Indonesia. With a lack of awareness of proper rubbish management, many people contribute to the growing rubbish problem. Through the use of machine learning algorithms, Rubbish Sorting Assistant aims to provide a solution by assisting users in identifying the type of rubbish and providing instructions on how to properly dispose or recycle it. The goal of the project is to promote better rubbish management solutions and create a cleaner and healthier environment. By helping people manage rubbish properly, we hope to reduce the rubbish problem in Indonesia and contribute to a cleaner and healthier future.
 
+_Rubist is an app designed to help users detect types of waste and provide important information about them. In addition, the app also provides a forum feature that allows users to share stories, discuss, and upload posts related to waste and the environment._
+
+### 🔑 Key Feature
+- Waste Type Detection: The Rubist app comes with the ability to detect the type of litter. Users can use their phone's camera or image from gallery to take pictures of litter, and Rubist will provide information on the type of litter detected.
+- Important Information: After detecting the type of waste, Rubist will display important information related to the waste. This information includes a description of the waste, its environmental impact, proper disposal, whether or not the waste can be recycled, and how to recycle it.
+- Forum Feature: Rubist provides a forum feature that allows users to share stories, discuss, and upload posts related to waste and the environment. Users can upload images, write text, and interact with other users through comments.
 
 ### Dataset: 
 - [Garbage Classification](https://drive.google.com/drive/folders/1aDMo-ZzUSCMDFDD16CPP3Lofb64It41J?usp=sharing) or
@@ -30,11 +36,11 @@ Rubist (Rubbish Sorting Assistant) Application - C23-PS480
 You can see more details for Machine Learning at [MODEL](https://github.com/berlianm/Rubist-Application/tree/main/Model%20Classification).
 
 ## Convolutional Neural Network (CNN)
-### CNN is a type of neural network architecture specifically for visual data processing, such as images. CNN is inspired by the structure of the visual cortex in the human brain and is designed to effectively extract features from images.
+CNN is a type of neural network architecture specifically for visual data processing, such as images. CNN is inspired by the structure of the visual cortex in the human brain and is designed to effectively extract features from images.
 <img src="https://github.com/berlianm/Rubist-Application/blob/main/Model%20Classification/cnn.jpeg" alt="cnn" style="display: inline-block; margin: 0 auto; max-width: 500px">
 
 ## MobileNet V2
-### MobileNetV2 is a Convolutional Neural Network (CNN) architecture specifically designed for image processing on mobile devices or Internet of Things (IoT) devices. It combines several techniques to achieve good performance in image processing tasks. This architecture provides a balance between computational speed and image recognition quality, making it suitable for applications that require real-time image processing on devices with limited resources.
+MobileNetV2 is a Convolutional Neural Network (CNN) architecture specifically designed for image processing on mobile devices or Internet of Things (IoT) devices. It combines several techniques to achieve good performance in image processing tasks. This architecture provides a balance between computational speed and image recognition quality, making it suitable for applications that require real-time image processing on devices with limited resources.
 <img src="https://github.com/berlianm/Rubist-Application/blob/main/Model%20Classification/MobileNet%20V2/mobilenetv2.png" alt="mbnetv2" style="display: inline-block; margin: 0 auto; max-width: 500px">
 
 ### Tasks for the Machine Learning Team
