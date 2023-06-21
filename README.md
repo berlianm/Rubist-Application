@@ -78,6 +78,8 @@ Total: `2737` Data
 <img src="https://github.com/berlianm/Rubist-Application/blob/main/architecture%20cloud%20design.png" alt="cc" style="display: inline-block; margin: 0 auto; max-width: 500px">
 <br />
 
+You can see more details at [here](https://github.com/berlianm/Rubist-Application/tree/main/CC%20API).
+
 <br /><br />
 
 # 3. Android Development
