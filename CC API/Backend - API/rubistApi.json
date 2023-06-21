@@ -1,0 +1,991 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Rubist API",
+    "version": "1.0.0",
+    "description": "API documentation for Rubist application."
+  },
+  "servers": [
+    {
+      "url": "https://backend-dot-c-project-387808.et.r.appspot.com",
+      "description": "APIs for Backend"
+    }
+    ],
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": "APIs for user authentication"
+    },
+    {
+      "name": "Community",
+      "description": "APIs for community management"
+    },
+    {
+      "name": "updateProfile",
+      "description": "APIs for updating user profile"
+    },
+    {
+      "name": "ML-API",
+      "description": "APIs for Model Machine Learning [ https://rubist-ml-api-wat75b4b6q-et.a.run.app/ ]"
+    }
+  ],
+    "paths": {
+      "/api/register": {
+        "post": {
+          "summary": "Register a new user",
+          "tags": ["Authentication"],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "John Doe"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "johndoe@example.com"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "password123"
+                    }
+                  },
+                  "required": ["name", "email", "password"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "User registered successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "message": "User registered successfully"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Invalid request body",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "error": "Invalid request body"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Failed to register user",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "error": "Failed to register user"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/login": {
+        "post": {
+          "summary": "User login",
+          "tags": ["Authentication"],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string",
+                      "example": "johndoe@example.com"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "password123"
+                    }
+                  },
+                  "required": ["email", "password"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "User logged in successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "message": "User logged in successfully"
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Email not verified",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "error": "Email not verified. Please verify your email first."
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Invalid request body",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "error": "Invalid request body"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Failed to login user",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "error": "Failed to login user"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/forgetPassword": {
+        "post": {
+          "summary": "Send password reset email",
+          "tags": ["Authentication"],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string",
+                      "example": "johndoe@example.com"
+                    }
+                  },
+                  "required": ["email"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Password reset email sent",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "status": "Password reset email sent"
+                  }
+                }
+              }
+            },
+            "422": {
+              "description": "Invalid request body",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "error": "Invalid request body"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Failed to send password reset email",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "error": "Failed to send password reset email"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/signOut": {
+        "post": {
+          "summary": "User sign out",
+          "tags": ["Authentication"],
+          "responses": {
+            "200": {
+              "description": "User signed out successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "message": "User signed out successfully"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Failed to sign out user",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object"
+                  },
+                  "example": {
+                    "error": "Failed to sign out user"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/community/posts": {
+          "post": {
+            "tags": ["Community"],
+            "summary": "Create a new post",
+            "parameters": [],
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string",
+                        "example": "Sample Title"
+                      },
+                      "content": {
+                        "type": "string",
+                        "example": "Sample Content"
+                      },
+                      "photo": {
+                        "type": "string",
+                        "format": "binary",
+                        "example": "<base64-encoded-image>"
+                      }
+                    },
+                    "required": ["title", "content"]
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "Post created successfully",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "postId": {
+                          "type": "string",
+                          "example": "sample-post-id"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Bad request",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "example": "Title and content are required"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "500": {
+                "description": "Internal server error",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "example": "Failed to create post"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "get": {
+            "tags": ["Community"],
+            "summary": "Get all posts",
+            "parameters": [],
+            "responses": {
+              "200": {
+                "description": "Success",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "sample-post-id": {
+                          "type": "object",
+                          "properties": {
+                            "title": {
+                              "type": "string",
+                              "example": "Sample Title"
+                            },
+                            "content": {
+                              "type": "string",
+                              "example": "Sample Content"
+                            },
+                            "photoUrl": {
+                              "type": "string",
+                              "example": "https://example.com/sample-photo.jpg"
+                            },
+                            "userId": {
+                              "type": "string",
+                              "example": "sample-user-id"
+                            },
+                            "createAt": {
+                              "type": "string",
+                              "example": "sample-time"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "404": {
+                "description": "Not found",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "example": "No posts found"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "500": {
+                "description": "Internal server error",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "example": "Failed to get posts"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "/api/community/posts/{postId}": {
+          "get": {
+            "tags": ["Community"],
+            "summary": "Get a post by ID",
+            "parameters": [
+              {
+                "name": "postId",
+                "in": "path",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                },
+                "example": "sample-post-id"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Success",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "title": {
+                          "type": "string",
+                          "example": "Sample Title"
+                        },
+                        "content": {
+                          "type": "string",
+                          "example": "Sample Content"
+                        },
+                        "photoUrl": {
+                          "type": "string",
+                          "example": "https://example.com/sample-photo.jpg"
+                        },
+                        "userId": {
+                          "type": "string",
+                          "example": "sample-user-id"
+                        },
+                        "createAt": {
+                          "type": "string",
+                          "example": "sample-time"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "404": {
+                "description": "Not found",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "example": "Post not found"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "500": {
+                "description": "Internal server error",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "example": "Failed to fetch post"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "/api/community/comments": {
+          "post": {
+            "tags": ["Community"],
+            "summary": "Create a new comment",
+            "parameters": [],
+            "requestBody": {
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "postId": {
+                        "type": "string",
+                        "example": "sample-post-id"
+                      },
+                      "content": {
+                        "type": "string",
+                        "example": "Sample Comment Content"
+                      }
+                    },
+                    "required": ["content"]
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "Comment created successfully",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "commentId": {
+                          "type": "string",
+                          "example": "sample-comment-id"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Bad request",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "example": "Content is required"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "500": {
+                "description": "Internal server error",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "example": "Failed to create comment"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "/api/community/posts/{postId}/comments": {
+          "get": {
+            "tags": ["Community"],
+            "summary": "Get comments for a post",
+            "parameters": [
+              {
+                "name": "postId",
+                "in": "path",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                },
+                "example": "sample-post-id"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Success",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "sample-post-id": {
+                          "type": "object",
+                          "properties": {
+                            "content": {
+                              "type": "string",
+                              "example": "Sample Comment Content"
+                            },
+                            "commentId": {
+                              "type": "string",
+                              "example": "sample-comment-id"
+                            },
+                            "userId": {
+                              "type": "string",
+                              "example": "sample-user-id"
+                            },
+                            "createAt": {
+                              "type": "string",
+                              "example": "sample-time"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "404": {
+                "description": "Not found",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "example": "No comments found"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "500": {
+                "description": "Internal server error",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "example": "Failed to get comments"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "/api/getData" :{
+          "get": {
+            "tags" : ["updateProfile"],
+            "summary": "Get all data users",
+            "parameters": [],
+            "responses": {
+              "200": {
+                "description": "Success",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "sample-data-users": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "example": "John Doe"
+                            },
+                            "email": {
+                              "type": "string",
+                              "example": "johndoe@example.com"
+                            },
+                            "photoUrl": {
+                              "type": "string",
+                              "example": "https://example.com/sample-photo.jpg"
+                            },
+                            "uid": {
+                              "type": "string",
+                              "example": "sample-user-id"
+                            },
+                            "mobilePhone" : {
+                              "type": "string",
+                              "example": "08+++"
+                            },
+                            "location": {
+                              "type": "string",
+                              "example": "Indonesia"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "404": {
+                "description": "Not user found",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "example": "No user found"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },      
+        "/api/getData/{uid}": {
+          "get": {
+            "tags" :["updateProfile"],
+            "summary": "Get data user by UID",
+            "parameters": [
+              {
+                "name": "uid",
+                "in": "path",
+                "description": "UID of the user",
+                "required": true,
+                "type": "string"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Success",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "sample-data-users": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "example": "John Doe"
+                            },
+                            "email": {
+                              "type": "string",
+                              "example": "johndoe@example.com"
+                            },
+                            "photoUrl": {
+                              "type": "string",
+                              "example": "https://example.com/sample-photo.jpg"
+                            },
+                            "uid": {
+                              "type": "string",
+                              "example": "sample-user-id"
+                            },
+                            "mobilePhone" : {
+                              "type": "string",
+                              "example": "08+++"
+                            },
+                            "location": {
+                              "type": "string",
+                              "example": "Indonesia"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "404": {
+                "description": "Not user found",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string",
+                          "example": "No user found"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },                    
+        "/api/updateProfile": {
+          "post": {
+            "tags": ["updateProfile"],
+            "summary": "Update user profile",
+            "requestBody": {
+              "content": {
+                "multipart/form-data": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "photo": {
+                        "type": "string",
+                        "format": "binary",
+                        "description": "The image file to upload"
+                      },
+                      "mobilePhone": {
+                        "type": "string",
+                        "description": "The user's mobile phone number"
+                      },
+                      "location": {
+                        "type": "string",
+                        "description": "The user's location"
+                      }
+                    },
+                    "required": ["file"]
+                  },
+                  "example": {
+                    "file": "example.jpg",
+                    "mobilePhone": "1234567890",
+                    "location": "New York"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "Success",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "image": {
+                          "type": "string",
+                          "description": "The URL of the uploaded image"
+                        }
+                      }
+                    },
+                    "example": {
+                      "image": "https://storage.googleapis.com/c-project-387808-profileimage/example.jpg"
+                    }
+                  }
+                }
+              },
+              "400": {
+                "description": "Bad request",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "example": {
+                      "error": "Bad request"
+                    }
+                  }
+                }
+              },
+              "401": {
+                "description": "Unauthorized",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "example": {
+                      "error": "Unauthorized"
+                    }
+                  }
+                }
+              },
+              "500": {
+                "description": "Internal server error",
+                "content": {
+                  "application/json": {
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "error": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "example": {
+                      "error": "Internal server error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+      "/uploadImage":{
+        "post" : {
+          "summary" : "upload image for predict the trash",
+          "tags" : ["ML-API"],
+          "requestBody" : {
+            "content" : {
+              "multipart/form-data":{
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "image": {
+                      "type" : "string",
+                      "format" : "binary",
+                      "description" :"The image file to upload"
+                    }
+                  },
+                  "required": ["image"]
+                },
+                "example" : {
+                  "image" : "sampah plastik.jpg"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200" : {
+              "description" : "Success",
+              "content" : {
+                "application/json":{
+                  "schema" : {
+                    "type" : "object",
+                    "properties" : {
+                      "image" : {
+                        "type" :"string",
+                        "description" : "Jenis Sampah & Deskripsi Sampah"
+                      }
+                    }
+                  },
+                  "example" : {
+                      "Jenis Sampah": "glass",
+                      "Cara Daur Ulang": "Kaca dapat didaur ulang dengan memisahkan berdasarkan warna, menghancurkannya menjadi serpihan kaca, dan melelehkannya menjadi cairan kaca untuk membuat produk kaca baru.",
+                      "Dampak Lingkungan": "Daur ulang kaca mengurangi penggunaan sumber daya alam, energi, dan emisi gas rumah kaca terkait dengan produksi kaca baru.",
+                      "Daur Ulang": "Ya",
+                      "Deskripsi": "Kaca adalah benda padat yang transparan dan tembus cahanya, biasanya terbuat dari silika. Kaca memiliki sifat keras dan rapuh yang digunakan untuk pembuatan jendela, botol, gelas, dan barang pecah belah lainnya. Kaca bisa memiliki berbagai warna dan dapat diatur ulang untuk membuat produk kaca baru.",
+                      "Pembuangan": "Sebaiknya didaur ulang daripada dibuang ke tempat pembuangan sampah umum."
+                   }
+                  }
+                } 
+              }
+            }
+          }
+         }
+      }
+}
+    

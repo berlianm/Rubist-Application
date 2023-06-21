@@ -1,0 +1,8 @@
+tensorflow 
+tensorflow-hub
+pillow 
+Flask 
+numpy 
+flask_cors 
+keras
+gunicorn
